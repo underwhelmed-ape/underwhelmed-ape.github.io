@@ -1,14 +1,7 @@
-# underwhelmed-ape.github.io
-============================
+This is a free template available from:
+http://www.themefisher.com/items/airspace-free-bootstrap-website-template/
 
-## Hello World
-
-First attempt at creating a homepage
-
-My Github User Page can be found at
-https://github.com/underwhelmed-ape/
+For the purpose of the udemy course Create fast and secure static sites and blogs with Jekyll I added the blog.html and post.html.
 
 
-Let's see the homepage develop over time:
 
-http://dantnguyen.github.io/
