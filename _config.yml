@@ -15,9 +15,9 @@
 # in the templates via {{ site.myvariable }}.
 title: The Underwhelmed Ape
 email: your-email@domain.com
-description: "Blog about Data Science, Photography, etc"
+description: "Blog about Data Science, Photography, Raspeberry Pis etc"
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "http://127.0.0.1:4000/"
 twitter_username: jekyllrb
 github_username:  jekyll
 
