@@ -16,7 +16,7 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="index.html">Home</a></li>
+          <li {% if page.url == "/" %}class="active"{% endif %}><a href="index.html">Home</a></li>
           <!-- <li><a href="about-us.htm">About Us</a></li> -->
           <li {% if page.url == "/portfolio.html" %}class="active"{% endif %}><a href="portfolio.html">Portfolio</a></li>
           <li {% if page.url == "/blog.html" %}class="active"{% endif %}><a href="blog.html">Blog</a></li>
