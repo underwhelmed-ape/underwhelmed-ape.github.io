@@ -11,7 +11,7 @@ group: "navigation"
 <!-- This loops through posts and previews them on Homepage -->
                 {% for post in site.posts %}
                 <div class="post-preview">
-                    <a href="post.html">
+                    <a href="{{ post.url }}">
                         <h2 class="post-title">
                             {{ post.title }}
                         </h2>
