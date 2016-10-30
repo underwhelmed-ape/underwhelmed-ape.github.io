@@ -1,7 +1,7 @@
 ---
 layout: post_layout
 title:  "Welcome to Jekyll!"
-subheading: "A Hello World Blog Post"
+description: "A Hello World Blog Post"
 date:   2016-10-29
 Author: James
 category: post

@@ -1,7 +1,7 @@
 ---
 layout: post_layout
 title:  "Welcome to Space"
-subheading: "A Hello World Blog Post"
+description: "A Hello World Blog Post"
 Author: James
 date:   2016-10-30
 category: post
