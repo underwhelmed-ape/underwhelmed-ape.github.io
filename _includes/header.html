@@ -48,7 +48,7 @@
                     <hr class="small">
                     {% if page.author %} <!-- If page is a blog post -->
                       <h2 class="subheading">{{ page.description }}</h2>
-                      <span class="meta">Posted by {{ page.Author }} on {{ page.date }}</span>
+                      <span class="meta">Posted by <a href="#">{{ page.Author }}</a> on {{ page.date | date_to_string }}</span>
                     {% else %}
                     <span class="subheading">{{ page.subheading }}</span>
                     {% endif %}
