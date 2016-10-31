@@ -28,14 +28,21 @@ cover_image: "home-bg.jpg"
 <!-- End of preview loop.-->
 
 <!-- Pager: jumping to previous and next posts -->
+          {% if paginator.total_pages > 1 %}
             <ul class="pager">
               <li class="previous">
-                  <a href="#">Previous Posts &larr;</a>
+                {% if paginator.previous_page %}
+                  <a href="{{ paginator.previous_page_path }}">Previous Posts &larr;</a>
               </li>
+                {% endif %}
+
+                {% if paginator.next_page %}
                 <li class="next">
-                    <a href="#">Older Posts &rarr;</a>
+                    <a href="{{ paginator.next_page_path }}">Older Posts &rarr;</a>
                 </li>
+                {% endif %}
             </ul>
+            {% endif %}
         </div>
     </div>
 </div>
