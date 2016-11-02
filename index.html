@@ -12,7 +12,7 @@ cover_image: "home-bg.jpg"
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 <!-- Loop through _posts directory and update Homepage preview.-->
-            {% for post in paginator.posts %}
+            {% for post in site.posts %}
             <div class="post-preview">
                 <a href="{{ post.url }}">
                     <h2 class="post-title">
