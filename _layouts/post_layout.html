@@ -8,7 +8,14 @@
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
                     {{ content }}
-                    
+
+                    <div class="row">
+                      <ul class="pager">
+                        <li class="previous"><a href="{{ page.previous.url }}">Older Posts</a></li>
+                        <li class="next"><a href="{{ page.next.url }}">Newer Posts</a></li>
+                      </ul>
+                    </div>
+
                 </div>
             </div>
         </div>
