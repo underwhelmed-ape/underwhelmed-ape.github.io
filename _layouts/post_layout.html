@@ -11,8 +11,13 @@
 
                     <div class="row">
                       <ul class="pager">
+                        {% if page.previous %}
                         <li class="previous"><a href="{{ page.previous.url }}">Older Posts</a></li>
+                        {% endif %}
+
+                        {% if page.previous %}
                         <li class="next"><a href="{{ page.next.url }}">Newer Posts</a></li>
+                        {% endif %}
                       </ul>
                     </div>
 
