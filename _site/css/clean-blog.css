@@ -2,14 +2,17 @@ body {
   font-family: 'Lora', 'Times New Roman', serif;
   font-size: 20px;
   color: #404040;
-}
+  }
+
 p {
   line-height: 1.5;
   margin: 30px 0;
-}
+  }
+
 p a {
   text-decoration: underline;
-}
+  }
+
 h1,
 h2,
 h3,
@@ -18,14 +21,17 @@ h5,
 h6 {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 800;
-}
+  }
+
 a {
   color: #404040;
-}
+  }
+
 a:hover,
 a:focus {
   color: #0085a1;
-}
+  }
+
 a img:hover,
 a img:focus {
   cursor: zoom-in;
@@ -57,8 +63,7 @@ hr.small {
   font-weight: 800;
   letter-spacing: 1px;
 }
-.selected {
-  color: black !important;
+
 }
 @media only screen and (min-width: 768px) {
   .navbar-custom {
@@ -82,6 +87,7 @@ hr.small {
     color: rgba(255, 255, 255, 0.8);
   }
 }
+
 @media only screen and (min-width: 1170px) {
   .navbar-custom {
     -webkit-transition: background-color 0.3s;
