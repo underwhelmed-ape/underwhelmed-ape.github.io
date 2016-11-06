@@ -1,7 +1,7 @@
 ---
 layout: post_layout
 title:  "Welcome to Jekyll!"
-description: "A Hello World Blog Post"
+description: "Jekyll offers powerful support for the production of static webpages, ideal for blogs"
 date:   2016-10-29
 Author: James
 category: post
