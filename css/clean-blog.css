@@ -39,6 +39,7 @@ a img:focus {
 blockquote {
   color: #808080;
   font-style: italic;
+  border-color: green;
 }
 hr.small {
   max-width: 100px;
@@ -215,6 +216,7 @@ hr.small {
 }
 .post-preview > a {
   color: #404040;
+  text-align: justify;
 }
 .post-preview > a:hover,
 .post-preview > a:focus {
