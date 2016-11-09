@@ -24,12 +24,12 @@ h6 {
   }
 
 a {
-  color: #404040;
+  color: #4f5b66;
   }
 
 a:hover,
 a:focus {
-  color: #0085a1;
+  color: #ae0001;
   }
 
 a img:hover,
@@ -39,7 +39,7 @@ a img:focus {
 blockquote {
   color: #808080;
   font-style: italic;
-  border-color: green;
+  border-color: #ae0001;
 }
 hr.small {
   max-width: 100px;
