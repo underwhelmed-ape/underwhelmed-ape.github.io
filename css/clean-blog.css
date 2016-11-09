@@ -29,7 +29,7 @@ a {
 
 a:hover,
 a:focus {
-  color: #ae0001;
+  color: #ae0001; /* Gryffindor Red when hover */
   }
 
 a img:hover,
@@ -39,7 +39,7 @@ a img:focus {
 blockquote {
   color: #808080;
   font-style: italic;
-  border-color: #ae0001;
+  border-color: #ae0001; /* Gryffindor Red */
 }
 hr.small {
   max-width: 100px;
