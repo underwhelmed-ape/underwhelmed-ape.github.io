@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Untitled</title>
+<title>Iris Test</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="http://localhost:4000/css/bootstrap.css" rel="stylesheet">
@@ -64,16 +64,15 @@
 
 
   <!-- Page Header -->
-  <header class="intro-header" style="background-image: url('http://localhost:4000/img/')">
+  <header class="intro-header" style="background-image: url('http://localhost:4000/img/post_images/iris_working_files/iris.jpg')">
       <div class="container">
           <div class="row">
               <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                   <div class="site-heading">
-                      <h1>Untitled</h1>
+                      <h1>Iris Test</h1>
                       <hr class="small">
-                       <!-- If page is a blog post -->
-                        <h2 class="subheading"></h2>
-                        <span class="meta">Posted by <a href="#"></a> on 25 Nov 2016</span>
+                      
+                      <span class="subheading"></span>
                       
                   </div>
               </div>
@@ -88,20 +87,77 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
-                    <p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com">http://rmarkdown.rstudio.com</a>.</p>
+                    <p>This post uses the Iris dataset initially collected by Edgar Anderson and
+introduced by Ronald Fisher.</p>
 
-<p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
+<h3 id="loading-packages">Loading packages</h3>
 
-<pre><code class="language-{r}">summary(cars)
+<div class="highlighter-rouge"><pre class="highlight"><code>library(mlbench)
+library(caret)
+
+## Loading required package: lattice
+
+## Loading required package: ggplot2
 </code></pre>
+</div>
 
-<p>You can also embed plots, for example:</p>
+<h2 id="looking-at-the-data">Looking at the Data</h2>
 
-<p><code class="highlighter-rouge"><span class="p">{</span><span class="err">r,</span><span class="w"> </span><span class="err">echo=FALSE</span><span class="p">}</span><span class="w">
-</span><span class="err">plot(cars)</span><span class="w">
-</span></code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code>head(iris)
 
-<p>Note that the <code class="highlighter-rouge">echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
+
+dim(iris)
+
+## [1] 150   5
+</code></pre>
+</div>
+
+<h2 id="descriptive-statistics">Descriptive Statistics</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>summary(iris)
+
+##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species  
+##  setosa    :50  
+##  versicolor:50  
+##  virginica :50  
+##                 
+##                 
+##
+
+sapply(iris[,1:4], sd)
+
+## Sepal.Length  Sepal.Width Petal.Length  Petal.Width
+##    0.8280661    0.4358663    1.7652982    0.7622377
+
+plot(iris)
+</code></pre>
+</div>
+
+<p><img src="/img/post_images/iris_working_files/unnamed-chunk-4-1.png" alt="Scatterplot Matrix of Iris dataset" /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code># create a layout of density plots by attribute
+par(mfrow=c(1,4))
+for(i in 1:4) {
+  plot(density(iris[,i]), main=names(iris)[i])
+}
+</code></pre>
+</div>
+
+<p><img src="/img/post_images/iris_working_files/unnamed-chunk-4-2.png" alt="Density Plot by Species" /></p>
 
 
                     <div class="row">
@@ -111,7 +167,7 @@
                         
 
                         
-                        <li class="next"><a href="/2016/11/25/analysis.html">Newer Posts</a></li>
+                        <li class="next"><a href="">Newer Posts</a></li>
                         
                       </ul>
                     </div>
