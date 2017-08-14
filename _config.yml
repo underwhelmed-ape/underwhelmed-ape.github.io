@@ -22,6 +22,7 @@ description: > # this means to ignore newlines until "baseurl:"
 baseurl: ""
 url: "https://underwhelmed-ape.github.io"
 github_username:  underwhelmed-ape
+twitter_username: UnderwhelmedApe
 
 # Build settings
 markdown: kramdown
