@@ -7,7 +7,29 @@ subheading: " "
 cover_image: "home-bg.jpg"
 ---
 
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-2">
+
 <h2> All posts to Date</h2>
+
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url }}">
+        {{ post.title }}
+      </a>
+      - <time datetime="{{ post.date | date: "%Y-%m-%d" }}">{{ post.date | date_to_long_string }}</time>
+    </li>
+  {% endfor %}
+</ul>
+
+    </div>
+  </div>
+</div>
+
+<hr/>
+
 
 <style>
 
@@ -58,24 +80,6 @@ div.desc {
     <div class="desc">Welcome to space</div>
   </div>
 
-  <div class="gallery-image">
-    <a href="https://underwhelmed-ape.github.io/post/2016/10/30/space.html" target="_blank">
-      <img src="/img/hop.jpg" alt="Houses of Parliament" width="300" height="200">
-    </a>
-    <div class="desc">Welcome to space</div>
-  </div>
-
-  <div class="gallery-image">
-    <a href="https://underwhelmed-ape.github.io/post/2016/10/30/space.html" target="_blank">
-      <img src="/img/wot.jpg" alt="Houses of Parliament" width="300" height="200">
-    </a>
-    <div class="desc">The Tank Museum </div>
-  </div>
-
-  <div class="gallery-image">
-      <img src="/img/wot.jpg" alt="Houses of Parliament" width="300" height="200">
-    <div class="desc">The Tank Museum </div>
-  </div>
 
 
 </div>
