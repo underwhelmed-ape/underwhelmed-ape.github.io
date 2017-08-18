@@ -77,3 +77,6 @@ Descriptive Statistics
 
 
 {{ page.title | slugify }}
+
+
+{% include image name="unnamed-chunk-4-1.png" caption="Testing image captions" %}
