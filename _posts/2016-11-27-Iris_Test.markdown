@@ -76,7 +76,11 @@ Descriptive Statistics
 ![Density Plot by Species](/img/post_images/2016-11-27-iris-test/unnamed-chunk-4-2.png)
 
 foo
+
 {{ page.date | date: "%Y-%m-%d" }}
+
 fooo
+
 {{ page.title | slugify }}/
+
 foooo
