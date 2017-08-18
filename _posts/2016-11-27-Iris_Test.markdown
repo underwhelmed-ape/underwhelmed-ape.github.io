@@ -73,7 +73,7 @@ Descriptive Statistics
       plot(density(iris[,i]), main=names(iris)[i])
     }
 
-![Density Plot by Species](/img/post_images/iris_working_files/unnamed-chunk-4-2.png)
+![Density Plot by Species](/img/post_images/2016-11-27-iris-test/unnamed-chunk-4-2.png)
 
 foo
 {{ page.date | date: "%Y-%m-%d" }}
