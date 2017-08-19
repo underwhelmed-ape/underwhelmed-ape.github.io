@@ -26,7 +26,8 @@ twitter_username: UnderwhelmedApe
 
 # Build settings
 markdown: kramdown
-gems:
+plugins_dir:
+  - jekyll-paginate
   - jekyll-feed
 exclude:
   - Gemfile

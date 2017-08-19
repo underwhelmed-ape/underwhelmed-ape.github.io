@@ -1,4 +1,11 @@
-<!-- Navigation -->
+<!-- adjusting margin and border - not sure why it changed -->
+<style>
+.navbar {
+  margin-bottom: 0;
+  border-style: none;
+}
+
+</style>
 
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
     <div class="container-fluid">
@@ -16,8 +23,8 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-              <li {% if page.url == "/" %}class="active"{% endif %}><a class="current" href="{{ site.url }}/index.html"><i class="fa fa-home fa-lg"></i> Home</a></li>
-              <li {% if page.url == "/about.html" %}class="active"{% endif %}><a href="{{ site.url }}/about.html"><i class="fa fa-user-circle-o fa-lg"></i> About Me</a></li>
+              <li {% if page.url == "/" %}class="active"{% endif %}><a class="current" href="{{ site.url }}/index.html">Home</a></li>
+              <li {% if page.url == "/about.html" %}class="active"{% endif %}><a href="{{ site.url }}/about.html">About Me</a></li>
               <!-- <li {% if page.url == "/maker_projects.html" %}class="active"{% endif %}><a href="{{ site.url }}/maker_projects.html">Making</a></li> -->
               <li {% if page.url == "/all_posts.html" %}class="active"{% endif %}><a href="{{ site.url }}/all_posts.html">Gallery</a></li>
             </ul>
