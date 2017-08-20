@@ -33,3 +33,5 @@ exclude:
   - Gemfile
   - Gemfile.lock
 paginate: 2
+collections:
+  - making
