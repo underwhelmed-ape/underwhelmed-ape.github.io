@@ -34,4 +34,6 @@ exclude:
   - Gemfile.lock
 paginate: 2
 collections:
-  - making
+  making:
+    output: true
+    permalink: /making/:path/
