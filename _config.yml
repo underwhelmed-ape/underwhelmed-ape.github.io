@@ -23,6 +23,7 @@ baseurl: ""
 url: "https://underwhelmed-ape.github.io"
 github_username:  underwhelmed-ape
 twitter_username: UnderwhelmedApe
+linkedin_username: in/james-ulyett-049a1238
 
 # Build settings
 markdown: kramdown
