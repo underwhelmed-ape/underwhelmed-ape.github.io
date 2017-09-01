@@ -1,5 +1,521 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.3.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-08-31T00:20:49+01:00</updated><id>http://localhost:4000/</id><title type="html">Datacraft</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-</subtitle><entry><title type="html">Iris Test</title><link href="http://localhost:4000/post/2016/11/27/Iris_Test.html" rel="alternate" type="text/html" title="Iris Test" /><published>2016-11-27T00:00:00+00:00</published><updated>2016-11-27T00:00:00+00:00</updated><id>http://localhost:4000/post/2016/11/27/Iris_Test</id><content type="html" xml:base="http://localhost:4000/post/2016/11/27/Iris_Test.html">&lt;p&gt;This post uses the Iris dataset initially collected by Edgar Anderson and
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.3.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-09-01T23:30:14+01:00</updated><id>http://localhost:4000/</id><title type="html">Datacraft</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</subtitle><entry><title type="html">Insect Survey Web Scraping</title><link href="http://localhost:4000/post/2017/09/01/RIS.html" rel="alternate" type="text/html" title="Insect Survey Web Scraping" /><published>2017-09-01T00:00:00+01:00</published><updated>2017-09-01T00:00:00+01:00</updated><id>http://localhost:4000/post/2017/09/01/RIS</id><content type="html" xml:base="http://localhost:4000/post/2017/09/01/RIS.html">&lt;h2 id=&quot;introduction-to-rothamsteds-insect-survey&quot;&gt;Introduction to Rothamsted’s Insect Survey&lt;/h2&gt;
+
+&lt;p&gt;Rothamsted is the UK’s leading agricultural research institutes. It is
+also the world’s oldest agricultural institute and still maintains the
+longest runnning field experiment, which has been in operation since 1856. Rothamsted is also historically significant for statisticians with
+Fisher and Anscombe working there post World War 2.&lt;/p&gt;
+
+&lt;p&gt;The Rothamsted Insect Survey (RIS) is a programme that maintains a
+network of 16 traps around the UK emptied daily and publish aggregated
+weekly data tables during Aphid season. The survey reports weekly count
+data of the abundance of pest Aphids and can be found
+&lt;a href=&quot;http://resources.rothamsted.ac.uk/insect-survey/bulletins&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This post is to document my process for web-scraping in R to extract data
+from HTML tables over multiple pages and concatenating these into a
+single time-series dataframe suitable for analysis.&lt;/p&gt;
+
+&lt;h3 id=&quot;setting-knitr-global-options&quot;&gt;Setting Knitr Global Options&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;knitr::opts_chunk$set(echo = TRUE,
+                      fig.path = &quot;images/&quot;,
+                      fig.width = 8,
+                      fig.height = 6,
+                      fig.align = &quot;center&quot;,
+                      warning = FALSE,
+                      message = FALSE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;installed-packages&quot;&gt;Installed Packages&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Data Manipulation
+library(dplyr)
+library(stringr)
+library(lubridate)
+library(data.table)
+library(reshape2)
+
+# Web Scraping
+library(rvest)
+library(httr)
+
+# Data Visualisation
+library(ggplot2)
+library(Amelia) # missmap function
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;accessing-the-data&quot;&gt;Accessing the Data&lt;/h2&gt;
+
+&lt;p&gt;Each Bulletin containing the HTML table of data is accessed through
+several pages of links to individual URLs. The challenge is to extract
+the tables at each url over each pages.&lt;/p&gt;
+
+&lt;p&gt;This creates a list of the parameters to the page URLs to loop through
+and scrape from.&lt;/p&gt;
+
+&lt;h3 id=&quot;pagination&quot;&gt;Pagination&lt;/h3&gt;
+
+&lt;p&gt;This is a table of the pages that hold the URL links. Each of the
+&lt;code class=&quot;highlighter-rouge&quot;&gt;PageURL&lt;/code&gt;s will be concatenated onto the end of the base URL (&lt;code class=&quot;highlighter-rouge&quot;&gt;surveys&lt;/code&gt;)
+to access each page.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;surveys &amp;lt;- read_html(&quot;http://resources.rothamsted.ac.uk/insect-survey/bulletins&quot;)
+
+pagination &amp;lt;-
+    data.frame(
+        PageName = &quot;Page 1&quot;,
+        PageUrl = &quot;/&quot;
+    )
+
+pagination &amp;lt;- rbind(
+    pagination,
+    data.frame(
+        PageName = surveys %&amp;gt;%
+            html_nodes(&quot;li.pager-item a&quot;) %&amp;gt;% # extracts anchor attributes from each 'next page' link
+            html_attr(&quot;title&quot;) %&amp;gt;% # extracts title-attribute from outputs
+            gsub(&quot;Go to &quot;,&quot;&quot;, x = .) %&amp;gt;% # cleaning up titles
+            gsub(&quot;p&quot;, &quot;P&quot;, x = .),
+        PageUrl = surveys %&amp;gt;%
+            html_nodes(&quot;li.pager-item a&quot;) %&amp;gt;% # same as before
+            html_attr(&quot;href&quot;) %&amp;gt;% # extracts the href from attributes
+            gsub(&quot;insect-survey/bulletins&quot;, &quot;&quot;, x = .))
+    )
+
+pagination
+
+##   PageName  PageUrl
+## 1   Page 1        /
+## 2   Page 2 /?page=1
+## 3   Page 3 /?page=2
+## 4   Page 4 /?page=3
+## 5   Page 5 /?page=4
+## 6   Page 6 /?page=5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;extracting-elements-from-base-url&quot;&gt;Extracting elements from Base URL&lt;/h3&gt;
+
+&lt;p&gt;With the pagination table, I can then loop through each page and extract
+attributes from each link, using another loop, including the heading of
+each Bulletin and the URL to the tables. This is stored in a dataframe
+of all the links.&lt;/p&gt;
+
+&lt;p&gt;Not all the links contain weekly bulletins. The links that are
+bulletins, containing the data, have a common naming pattern within
+their title &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Bulletin No: &quot;&lt;/code&gt;. I used &lt;code class=&quot;highlighter-rouge&quot;&gt;grep&lt;/code&gt; to only bring back those
+instances that contain that pattern.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;all_bulletins &amp;lt;- data.frame() # create empty dataframe for the bulletin list.
+
+# Loop through each page in pagination dataframe, extract title and url of each link.
+
+for (page in 1:nrow(pagination)) {
+    page_url = paste(&quot;http://resources.rothamsted.ac.uk/insect-survey/bulletins&quot;, pagination$PageUrl[page], sep = &quot;&quot;)
+    parsed_page = read_html(page_url)
+    bulletins = data.frame(BulletinName = parsed_page %&amp;gt;%
+                               html_nodes(&quot;h4.title&quot;) %&amp;gt;%
+                               html_text(),
+                           BulletinUrl = parsed_page %&amp;gt;%
+                               html_nodes(&quot;h4.title a&quot;) %&amp;gt;%
+                               html_attr(&quot;href&quot;)) %&amp;gt;%
+        dplyr::filter(
+             grepl(pattern = &quot;Bulletin No: &quot;, BulletinName) # filters to only those with datasets
+        )
+    all_bulletins = rbind(all_bulletins, bulletins) # create dataframe concatenating all bulletins
+    all_bulletins &amp;lt;- droplevels(all_bulletins) # removes unused levels subsetted out
+}
+
+rm(page, page_url, parsed_page, surveys)
+
+all_bulletins %&amp;gt;% glimpse
+
+## Observations: 122
+## Variables: 2
+## $ BulletinName &amp;lt;fctr&amp;gt; Bulletin No: 22. 21 August - 27 August 2017, Bul...
+## $ BulletinUrl  &amp;lt;fctr&amp;gt; /insect-survey-bulletins/bulletin-no-22-21-augus...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;inspecting-the-dataframe&quot;&gt;Inspecting the Dataframe&lt;/h3&gt;
+
+&lt;p&gt;The web scraping has extracted the name and the URL that links to the
+data for each Bulletin over the 6 pages of results. As I will need a way
+of knowing which data comes from each Bulletin after putting them all
+together, I will extract information from the names here using Regular
+Expressions.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Regex to extract constituents from bulletin names
+
+all_bulletins %&amp;gt;%
+    mutate(BulletinNo = str_extract(string = all_bulletins$BulletinName, &quot;Bulletin No: \\d+&quot;),
+           year = str_extract(string = all_bulletins$BulletinName, &quot;\\d+$&quot;),
+           date_range = str_replace(string = all_bulletins$BulletinName,
+            pattern = &quot;Bulletin No: \\d+\\. &quot;,
+            replacement = &quot;&quot;)
+           ) -&amp;gt; all_bulletins
+
+tail(all_bulletins)
+
+##                            BulletinName
+## 117     Bulletin No: 7. 12 May - 18 May
+## 118     Bulletin No: 6. 05 May - 11 May
+## 119   Bulletin No: 5. 28 April - 04 May
+## 120       Bulletin No: 2. 07 - 13 April
+## 121       Bulletin No: 3. 14 - 20 April
+## 122 Bulletin No: 1. 31 March - 06 April
+##                                                  BulletinUrl
+## 117     /insect-survey-bulletins/bulletin-no-7-12-may-18-may
+## 118     /insect-survey-bulletins/bulletin-no-6-05-may-11-may
+## 119   /insect-survey-bulletins/bulletin-no-5-28-april-04-may
+## 120       /insect-survey-bulletins/bulletin-no-2-07-13-april
+## 121       /insect-survey-bulletins/bulletin-no-3-14-20-april
+## 122 /insect-survey-bulletins/bulletin-no-1-31-march-06-april
+##         BulletinNo year          date_range
+## 117 Bulletin No: 7 &amp;lt;NA&amp;gt;     12 May - 18 May
+## 118 Bulletin No: 6 &amp;lt;NA&amp;gt;     05 May - 11 May
+## 119 Bulletin No: 5 &amp;lt;NA&amp;gt;   28 April - 04 May
+## 120 Bulletin No: 2 &amp;lt;NA&amp;gt;       07 - 13 April
+## 121 Bulletin No: 3 &amp;lt;NA&amp;gt;       14 - 20 April
+## 122 Bulletin No: 1 &amp;lt;NA&amp;gt; 31 March - 06 April
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If we view this now, I have extracted and added as seperate factors, the
+Bulletin number, the year and the range of dates that the data covers.
+This isn’t the cleanest data, the earliest reports made in 2014 do not
+have the year within the title, also the format of some of the date
+ranges vary in how they were written.&lt;/p&gt;
+
+&lt;p&gt;Adding 2014 to the year manually:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;all_bulletins$year[is.na(all_bulletins$year)] &amp;lt;- &quot;2014&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;creating-an-aphid-collection-date&quot;&gt;Creating an Aphid Collection Date&lt;/h3&gt;
+
+&lt;p&gt;This data is a time series and so I need to be able to extract a clean
+date from each title. As mentioned before, the formats are not always
+consistent:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;str_extract(string = all_bulletins$date_range,
+            pattern = &quot;\\d+ \\w+ &quot;)
+
+##   [1] &quot;21 August &quot;    &quot;14 August &quot;    &quot;07 August &quot;    &quot;31 July &quot;     
+##   [5] &quot;24 July &quot;      &quot;17 July &quot;      &quot;10 July &quot;      &quot;02 July &quot;     
+##   [9] &quot;26 June &quot;      &quot;19 June &quot;      &quot;12 June &quot;      &quot;05 June &quot;     
+##  [13] &quot;29 May &quot;       &quot;22 May &quot;       &quot;15 May &quot;       &quot;08 May &quot;      
+##  [17] &quot;01 May &quot;       &quot;24 April &quot;     &quot;17 April &quot;     &quot;10 April &quot;    
+##  [21] &quot;03 April &quot;     &quot;27 March &quot;     &quot;07 November &quot;  &quot;06 November &quot;
+##  [25] &quot;24 October &quot;   &quot;17 October &quot;   &quot;10 October &quot;   &quot;03 October &quot;  
+##  [29] &quot;26 September &quot; &quot;19 September &quot; &quot;12 September &quot; &quot;05 September &quot;
+##  [33] &quot;29 August &quot;    &quot;22 August &quot;    &quot;15 August &quot;    &quot;08 August &quot;   
+##  [37] &quot;01 August &quot;    &quot;25 July &quot;      &quot;18 July &quot;      &quot;11 July &quot;     
+##  [41] &quot;04 July &quot;      &quot;27 June &quot;      &quot;20 June &quot;      &quot;13 June &quot;     
+##  [45] &quot;06 June &quot;      &quot;30 May &quot;       &quot;23 May &quot;       &quot;16 May &quot;      
+##  [49] &quot;09 May &quot;       &quot;02 May &quot;       &quot;25 April &quot;     &quot;18 April &quot;    
+##  [53] &quot;11 April &quot;     &quot;04 April &quot;     &quot;28 March &quot;     &quot;21 March &quot;    
+##  [57] &quot;16 November &quot;  &quot;09 November &quot;  &quot;02 November &quot;  &quot;26 October &quot;  
+##  [61] &quot;19 October &quot;   &quot;12 October &quot;   &quot;05 October &quot;   &quot;28 September &quot;
+##  [65] &quot;21 September &quot; &quot;14 September &quot; &quot;07 September &quot; &quot;31 August &quot;   
+##  [69] &quot;24 August &quot;    &quot;17 August &quot;    &quot;10 August &quot;    &quot;03 August &quot;   
+##  [73] &quot;27 July &quot;      &quot;20 July &quot;      &quot;13 July &quot;      &quot;06 July &quot;     
+##  [77] &quot;29 June &quot;      &quot;22 June &quot;      &quot;15 June &quot;      &quot;08 June &quot;     
+##  [81] &quot;01 June &quot;      &quot;25 May &quot;       &quot;18 May &quot;       &quot;11 May &quot;      
+##  [85] &quot;04 May &quot;       &quot;27 April &quot;     &quot;20 April &quot;     &quot;13 April &quot;    
+##  [89] &quot;06 April &quot;     &quot;17 November &quot;  &quot;10 November &quot;  &quot;03 November &quot;
+##  [93] &quot;27 October &quot;   &quot;20 October &quot;   &quot;13 October &quot;   &quot;06 October &quot;  
+##  [97] &quot;29 September &quot; &quot;22 September &quot; &quot;15 September &quot; &quot;08 September &quot;
+## [101] &quot;01 September &quot; &quot;25 August &quot;    &quot;18 August &quot;    &quot;11 August &quot;   
+## [105] &quot;04 August &quot;    &quot;28 July &quot;      &quot;21 July &quot;      &quot;14 July &quot;     
+## [109] &quot;07 July &quot;      &quot;30 June &quot;      &quot;23 June &quot;      &quot;16 June &quot;     
+## [113] &quot;09 June &quot;      &quot;02 June &quot;      &quot;26 May &quot;       &quot;19 May &quot;      
+## [117] &quot;12 May &quot;       &quot;05 May &quot;       &quot;28 April &quot;     NA             
+## [121] NA              &quot;31 March &quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This shows that the naming format is not constant resulting in two
+outputs with NA. As such I extract each element individually and
+concatenate them to form a date that is the beginning of each data
+collection exercise.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;paste(
+# Match first numbers in each string
+str_extract(string = all_bulletins$date_range,
+            pattern = &quot;\\d+&quot;),
+# Matches the month at beginning of collection
+str_extract(string = all_bulletins$date_range,
+            pattern = &quot;[:alpha:]+&quot;),
+# already extracted the year
+all_bulletins$year,
+sep = &quot; &quot;
+)
+
+##   [1] &quot;21 August 2017&quot;    &quot;14 August 2017&quot;    &quot;07 August 2017&quot;   
+##   [4] &quot;31 July 2017&quot;      &quot;24 July 2017&quot;      &quot;17 July 2017&quot;     
+##   [7] &quot;10 July 2017&quot;      &quot;02 July 2017&quot;      &quot;26 June 2017&quot;     
+##  [10] &quot;19 June 2017&quot;      &quot;12 June 2017&quot;      &quot;05 June 2017&quot;     
+##  [13] &quot;29 May 2017&quot;       &quot;22 May 2017&quot;       &quot;15 May 2017&quot;      
+##  [16] &quot;08 May 2017&quot;       &quot;01 May 2017&quot;       &quot;24 April 2017&quot;    
+##  [19] &quot;17 April 2017&quot;     &quot;10 April 2017&quot;     &quot;03 April 2017&quot;    
+##  [22] &quot;27 March 2017&quot;     &quot;07 November 2016&quot;  &quot;31 October 2016&quot;  
+##  [25] &quot;24 October 2016&quot;   &quot;17 October 2016&quot;   &quot;10 October 2016&quot;  
+##  [28] &quot;03 October 2016&quot;   &quot;26 September 2016&quot; &quot;19 September 2016&quot;
+##  [31] &quot;12 September 2016&quot; &quot;05 September 2016&quot; &quot;29 August 2016&quot;   
+##  [34] &quot;22 August 2016&quot;    &quot;15 August 2016&quot;    &quot;08 August 2016&quot;   
+##  [37] &quot;01 August 2016&quot;    &quot;25 July 2016&quot;      &quot;18 July 2016&quot;     
+##  [40] &quot;11 July 2016&quot;      &quot;04 July 2016&quot;      &quot;27 June 2016&quot;     
+##  [43] &quot;20 June 2016&quot;      &quot;13 June 2016&quot;      &quot;06 June 2016&quot;     
+##  [46] &quot;30 May 2016&quot;       &quot;23 May 2016&quot;       &quot;16 May 2016&quot;      
+##  [49] &quot;09 May 2016&quot;       &quot;02 May 2016&quot;       &quot;25 April 2016&quot;    
+##  [52] &quot;18 April 2016&quot;     &quot;11 April 2016&quot;     &quot;04 April 2016&quot;    
+##  [55] &quot;28 March 2016&quot;     &quot;21 March 2016&quot;     &quot;16 November 2015&quot;
+##  [58] &quot;09 November 2015&quot;  &quot;02 November 2015&quot;  &quot;26 October 2015&quot;  
+##  [61] &quot;19 October 2015&quot;   &quot;12 October 2015&quot;   &quot;05 October 2015&quot;  
+##  [64] &quot;28 September 2015&quot; &quot;21 September 2015&quot; &quot;14 September 2015&quot;
+##  [67] &quot;07 September 2015&quot; &quot;31 August 2015&quot;    &quot;24 August 2015&quot;   
+##  [70] &quot;17 August 2015&quot;    &quot;10 August 2015&quot;    &quot;03 August 2015&quot;   
+##  [73] &quot;27 July 2015&quot;      &quot;20 July 2015&quot;      &quot;13 July 2015&quot;     
+##  [76] &quot;06 July 2015&quot;      &quot;29 June 2015&quot;      &quot;22 June 2015&quot;     
+##  [79] &quot;15 June 2015&quot;      &quot;08 June 2015&quot;      &quot;01 June 2015&quot;     
+##  [82] &quot;25 May 2015&quot;       &quot;18 May 2015&quot;       &quot;11 May 2015&quot;      
+##  [85] &quot;04 May 2015&quot;       &quot;27 April 2015&quot;     &quot;20 April 2015&quot;    
+##  [88] &quot;13 April 2015&quot;     &quot;06 April 2015&quot;     &quot;17 November 2014&quot;
+##  [91] &quot;10 November 2014&quot;  &quot;03 November 2014&quot;  &quot;27 October 2014&quot;  
+##  [94] &quot;20 October 2014&quot;   &quot;13 October 2014&quot;   &quot;06 October 2014&quot;  
+##  [97] &quot;29 September 2014&quot; &quot;22 September 2014&quot; &quot;15 September 2014&quot;
+## [100] &quot;08 September 2014&quot; &quot;01 September 2014&quot; &quot;25 August 2014&quot;   
+## [103] &quot;18 August 2014&quot;    &quot;11 August 2014&quot;    &quot;04 August 2014&quot;   
+## [106] &quot;28 July 2014&quot;      &quot;21 July 2014&quot;      &quot;14 July 2014&quot;     
+## [109] &quot;07 July 2014&quot;      &quot;30 June 2014&quot;      &quot;23 June 2014&quot;     
+## [112] &quot;16 June 2014&quot;      &quot;09 June 2014&quot;      &quot;02 June 2014&quot;     
+## [115] &quot;26 May 2014&quot;       &quot;19 May 2014&quot;       &quot;12 May 2014&quot;      
+## [118] &quot;05 May 2014&quot;       &quot;28 April 2014&quot;     &quot;07 April 2014&quot;    
+## [121] &quot;14 April 2014&quot;     &quot;31 March 2014&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Adding this into the &lt;code class=&quot;highlighter-rouge&quot;&gt;all_bulletins&lt;/code&gt; dataframe as a new factor, and give
+this a date fomat.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;all_bulletins %&amp;gt;%
+    mutate(week_start =
+               paste(
+str_extract(string = all_bulletins$date_range,
+            pattern = &quot;\\d+&quot;),
+# Matches the Week beginning month
+str_extract(string = all_bulletins$date_range,
+            pattern = &quot;[:alpha:]+&quot;),
+# already extracted the year
+all_bulletins$year,
+sep = &quot; &quot;)
+) -&amp;gt; all_bulletins
+
+all_bulletins$week_start &amp;lt;- dmy(all_bulletins$week_start)
+
+str(all_bulletins)
+
+## 'data.frame':    122 obs. of  6 variables:
+##  $ BulletinName: Factor w/ 122 levels &quot;Bulletin No: 1. 27 March - 02 April 2017&quot;,..: 15 14 13 11 10 9 8 7 6 5 ...
+##  $ BulletinUrl : Factor w/ 122 levels &quot;/insect-survey-bulletins/bulletin-no-1-27-march-02-april-2017&quot;,..: 15 14 13 11 10 9 8 7 6 5 ...
+##  $ BulletinNo  : chr  &quot;Bulletin No: 22&quot; &quot;Bulletin No: 21&quot; &quot;Bulletin No: 20&quot; &quot;Bulletin No: 19&quot; ...
+##  $ year        : chr  &quot;2017&quot; &quot;2017&quot; &quot;2017&quot; &quot;2017&quot; ...
+##  $ date_range  : chr  &quot;21 August - 27 August 2017&quot; &quot;14 August - 20 August 2017&quot; &quot;07 August - 13 August 2017&quot; &quot;31 July - 06 August 2017&quot; ...
+##  $ week_start  : Date, format: &quot;2017-08-21&quot; &quot;2017-08-14&quot; ...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;extracting-the-data&quot;&gt;Extracting the Data&lt;/h2&gt;
+
+&lt;p&gt;Everything up until now has been preparing for extracting the data. To
+concatenate all the data together for analysis, a list is created and
+the data from each table is scraped and placed into a dataframe and
+placed within the list. Each dataframe in this contains the table
+extracted from the site location.&lt;/p&gt;
+
+&lt;p&gt;This list is then concatenated together using &lt;code class=&quot;highlighter-rouge&quot;&gt;dplyr::bind_rows()&lt;/code&gt;. The
+base function &lt;code class=&quot;highlighter-rouge&quot;&gt;rbind()&lt;/code&gt; requires columns within each table to be the
+same. In this case, over such a timescale the locations of the insect
+traps may not stay constant over the years. The function &lt;code class=&quot;highlighter-rouge&quot;&gt;bind_rows()&lt;/code&gt;
+will retain all columns and place ‘NA’ in the spaces.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;data.list = list()
+
+for(index in (1:nrow(all_bulletins))) {
+    tryCatch({
+        paste(&quot;http://resources.rothamsted.ac.uk&quot;,all_bulletins$BulletinUrl[index], sep = &quot;&quot;) %&amp;gt;%
+        read_html %&amp;gt;%
+        html_table(., header = TRUE) %&amp;gt;%
+        do.call(cbind, .) -&amp;gt; dat
+
+    dat[is.na(dat)] &amp;lt;- 0 # assigns all NAs to 0
+
+    dat %&amp;gt;%
+        mutate(year = all_bulletins$year[index],
+               bulletin.number = all_bulletins$BulletinNo[index],
+               week_start = all_bulletins$week_start[index]) -&amp;gt; dat
+
+    dat$index &amp;lt;- index
+
+    data.list[[index]] &amp;lt;- dat
+    }, error=function(e){})
+}
+
+## Warning: closing unused connection 5 (http://resources.rothamsted.ac.uk/
+## insect-survey-bulletins/bulletin-no-34-07-november-13-november-2016)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This outputs a warning about closing an unused connection with the
+number and the URL. This informs us that bulletin number 34 from the 7th
+November to 13th November 2016 could not be accessed. This was the
+purpose of the &lt;code class=&quot;highlighter-rouge&quot;&gt;tryCatch&lt;/code&gt;, without which the loop would stop executing
+the script after receiving the error.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;all.data &amp;lt;- do.call(bind_rows, data.list)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Within this, I am assuming that where cells within the table are blank,
+no aphids of that specied were found and have been replaced with a &lt;code class=&quot;highlighter-rouge&quot;&gt;0&lt;/code&gt;.
+This is to differentiate when a location is not available / functioning
+which will contain &lt;code class=&quot;highlighter-rouge&quot;&gt;NA&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Renaming some columns&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;data.table::setnames(all.data,
+                     old = c('Var.1','year', 'bulletin.number', 'index'),
+                     new = c(&quot;Aphid_sp&quot;, &quot;Year&quot;, &quot;Bulletin_Number&quot;, &quot;Index&quot;)
+                     )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In the data there are observations that lists the number of part catches
+and number of days of catching. Removing these.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;all.data %&amp;gt;%
+    filter(Aphid_sp != &quot;Days&quot;) %&amp;gt;%
+    filter(Aphid_sp != &quot;Part Catches&quot;) -&amp;gt; all.data
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;inspecting-the-final-dataset&quot;&gt;Inspecting the Final Dataset&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;summary(all.data)
+
+##    Aphid_sp               El                 D                 G          
+##  Length:2541        Min.   :   0.000   Min.   :  0.000   Min.   :   0.00  
+##  Class :character   1st Qu.:   0.000   1st Qu.:  0.000   1st Qu.:   0.00  
+##  Mode  :character   Median :   0.000   Median :  0.000   Median :   0.00  
+##                     Mean   :   6.504   Mean   :  7.537   Mean   :  20.74  
+##                     3rd Qu.:   0.000   3rd Qu.:  1.000   3rd Qu.:   2.00  
+##                     Max.   :1048.000   Max.   :996.000   Max.   :6156.00  
+##                                                                           
+##        Ay                N                 Y                P           
+##  Min.   :  0.000   Min.   :   0.00   Min.   :  0.00   Min.   :    0.00  
+##  1st Qu.:  0.000   1st Qu.:   0.00   1st Qu.:  0.00   1st Qu.:    0.00  
+##  Median :  0.000   Median :   0.00   Median :  0.00   Median :    0.00  
+##  Mean   :  3.731   Mean   :  10.88   Mean   : 11.75   Mean   :   74.06  
+##  3rd Qu.:  0.000   3rd Qu.:   1.00   3rd Qu.:  4.00   3rd Qu.:    3.00  
+##  Max.   :667.000   Max.   :1895.00   Max.   :857.00   Max.   :18287.00  
+##                                      NA's   :693                        
+##        K                 BB                We                H          
+##  Min.   :   0.00   Min.   :   0.00   Min.   :   0.00   Min.   :   0.00  
+##  1st Qu.:   0.00   1st Qu.:   0.00   1st Qu.:   0.00   1st Qu.:   0.00  
+##  Median :   0.00   Median :   0.00   Median :   0.00   Median :   0.00  
+##  Mean   :  13.18   Mean   :  14.23   Mean   :  12.29   Mean   :  12.58  
+##  3rd Qu.:   4.00   3rd Qu.:   3.00   3rd Qu.:   3.00   3rd Qu.:   3.00  
+##  Max.   :1847.00   Max.   :1942.00   Max.   :1368.00   Max.   :3053.00  
+##                                                                         
+##        RT                 Wr                SP                W          
+##  Min.   :   0.000   Min.   :   0.00   Min.   :  0.000   Min.   :  0.000  
+##  1st Qu.:   0.000   1st Qu.:   0.00   1st Qu.:  0.000   1st Qu.:  0.000  
+##  Median :   0.000   Median :   0.00   Median :  0.000   Median :  0.000  
+##  Mean   :   9.289   Mean   :  12.45   Mean   :  3.553   Mean   :  6.149  
+##  3rd Qu.:   3.000   3rd Qu.:   3.00   3rd Qu.:  1.000   3rd Qu.:  2.000  
+##  Max.   :1627.000   Max.   :1381.00   Max.   :639.000   Max.   :510.000  
+##                                                                          
+##        SX             Year           Bulletin_Number   
+##  Min.   :  0.00   Length:2541        Length:2541       
+##  1st Qu.:  0.00   Class :character   Class :character  
+##  Median :  0.00   Mode  :character   Mode  :character  
+##  Mean   :  7.58                                        
+##  3rd Qu.:  3.00                                        
+##  Max.   :664.00                                        
+##                                                        
+##    week_start             Index              AB      
+##  Min.   :2014-03-31   Min.   :  1.00   Min.   :0     
+##  1st Qu.:2014-11-03   1st Qu.: 32.00   1st Qu.:0     
+##  Median :2015-10-12   Median : 62.00   Median :0     
+##  Mean   :2015-11-24   Mean   : 61.82   Mean   :0     
+##  3rd Qu.:2016-09-05   3rd Qu.: 92.00   3rd Qu.:0     
+##  Max.   :2017-08-21   Max.   :122.00   Max.   :0     
+##                                        NA's   :2247
+
+Amelia::missmap(all.data,
+                col = c(&quot;steelblue&quot;, &quot;lightgrey&quot;),
+                y.labels = c(2500, 2250, 2000, 1750, 1500, 1250, 1000, 750, 500, 250, 1),
+                y.at = c(1, 250, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500)+20,
+                main = &quot;Missing data Map&quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/post_images/RIS/unnamed-chunk-9-1.png&quot; style=&quot;display: block; margin: auto; width: 750px;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This indicates that the collection traps at &lt;code class=&quot;highlighter-rouge&quot;&gt;AB&lt;/code&gt; were not available for
+chunks of time at the beginning of the period. Also the collection at
+&lt;code class=&quot;highlighter-rouge&quot;&gt;Y&lt;/code&gt; location was discontinued.&lt;/p&gt;
+
+&lt;p&gt;Plotting Aphid species counts for Rothamsted Tower.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;all.data %&amp;gt;%
+    ggplot(aes(x = week_start, y = RT)) +
+    geom_point() +
+    theme_bw() +
+    labs(
+        title = &quot;Aphid Species Captured at Rothamsted Tower&quot;,
+        x = &quot;Collection Date&quot;,
+        y = &quot;Aphid Counts&quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/post_images/RIS/unnamed-chunk-10-1.png&quot; style=&quot;display: block; margin: auto; width: 750px;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;From this point the data can be manipulated and cleaned as required for
+analysis.&lt;/p&gt;
+
+&lt;h2 id=&quot;session-info&quot;&gt;Session Info&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;## R version 3.3.3 (2017-03-06)
+## Platform: x86_64-apple-darwin13.4.0 (64-bit)
+## Running under: macOS Sierra 10.12.6
+##
+## locale:
+## [1] en_GB.UTF-8/en_GB.UTF-8/en_GB.UTF-8/C/en_GB.UTF-8/en_GB.UTF-8
+##
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+##
+## other attached packages:
+##  [1] Amelia_1.7.4      Rcpp_0.12.12      ggplot2_2.2.1    
+##  [4] httr_1.2.1        rvest_0.3.2       xml2_1.1.1       
+##  [7] reshape2_1.4.2    data.table_1.10.0 lubridate_1.6.0  
+## [10] stringr_1.2.0     dplyr_0.5.0      
+##
+## loaded via a namespace (and not attached):
+##  [1] knitr_1.16       magrittr_1.5     munsell_0.4.3    colorspace_1.3-2
+##  [5] R6_2.2.0         plyr_1.8.4       tools_3.3.3      grid_3.3.3      
+##  [9] gtable_0.2.0     DBI_0.5-1        selectr_0.3-1    htmltools_0.3.6
+## [13] lazyeval_0.2.0   yaml_2.1.14      assertthat_0.1   rprojroot_1.2   
+## [17] digest_0.6.12    tibble_1.2       curl_2.3         evaluate_0.10.1
+## [21] rmarkdown_1.6    labeling_0.3     stringi_1.1.5    scales_0.4.1    
+## [25] backports_1.0.5  XML_3.98-1.5     foreign_0.8-67
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</content><author><name></name></author><category term="post" /><summary type="html">Introduction to Rothamsted’s Insect Survey</summary></entry><entry><title type="html">Iris Test</title><link href="http://localhost:4000/post/2016/11/27/Iris_Test.html" rel="alternate" type="text/html" title="Iris Test" /><published>2016-11-27T00:00:00+00:00</published><updated>2016-11-27T00:00:00+00:00</updated><id>http://localhost:4000/post/2016/11/27/Iris_Test</id><content type="html" xml:base="http://localhost:4000/post/2016/11/27/Iris_Test.html">&lt;p&gt;This post uses the Iris dataset initially collected by Edgar Anderson and
 introduced by Ronald Fisher.&lt;/p&gt;
 
 &lt;h3 id=&quot;loading-packages&quot;&gt;Loading packages&lt;/h3&gt;
