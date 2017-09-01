@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.3.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-09-01T23:30:14+01:00</updated><id>http://localhost:4000/</id><title type="html">Datacraft</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.3.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-09-02T00:01:43+01:00</updated><id>http://localhost:4000/</id><title type="html">Infobesity</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 </subtitle><entry><title type="html">Insect Survey Web Scraping</title><link href="http://localhost:4000/post/2017/09/01/RIS.html" rel="alternate" type="text/html" title="Insect Survey Web Scraping" /><published>2017-09-01T00:00:00+01:00</published><updated>2017-09-01T00:00:00+01:00</updated><id>http://localhost:4000/post/2017/09/01/RIS</id><content type="html" xml:base="http://localhost:4000/post/2017/09/01/RIS.html">&lt;h2 id=&quot;introduction-to-rothamsteds-insect-survey&quot;&gt;Introduction to Rothamsted’s Insect Survey&lt;/h2&gt;
 
 &lt;p&gt;Rothamsted is the UK’s leading agricultural research institutes. It is
@@ -183,7 +183,7 @@ tail(all_bulletins)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;If we view this now, I have extracted and added as seperate factors, the
+&lt;p&gt;If we view this now, I have extracted and added as separate factors, the
 Bulletin number, the year and the range of dates that the data covers.
 This isn’t the cleanest data, the earliest reports made in 2014 do not
 have the year within the title, also the format of some of the date
@@ -515,7 +515,13 @@ analysis.&lt;/p&gt;
 ## [21] rmarkdown_1.6    labeling_0.3     stringi_1.1.5    scales_0.4.1    
 ## [25] backports_1.0.5  XML_3.98-1.5     foreign_0.8-67
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name></name></author><category term="post" /><summary type="html">Introduction to Rothamsted’s Insect Survey</summary></entry><entry><title type="html">Iris Test</title><link href="http://localhost:4000/post/2016/11/27/Iris_Test.html" rel="alternate" type="text/html" title="Iris Test" /><published>2016-11-27T00:00:00+00:00</published><updated>2016-11-27T00:00:00+00:00</updated><id>http://localhost:4000/post/2016/11/27/Iris_Test</id><content type="html" xml:base="http://localhost:4000/post/2016/11/27/Iris_Test.html">&lt;p&gt;This post uses the Iris dataset initially collected by Edgar Anderson and
+&lt;/div&gt;</content><author><name></name></author><category term="post" /><summary type="html">Introduction to Rothamsted’s Insect Survey</summary></entry><entry><title type="html">Iris Test</title><link href="http://localhost:4000/post/2016/11/27/Iris_Test.html" rel="alternate" type="text/html" title="Iris Test" /><published>2016-11-27T00:00:00+00:00</published><updated>2016-11-27T00:00:00+00:00</updated><id>http://localhost:4000/post/2016/11/27/Iris_Test</id><content type="html" xml:base="http://localhost:4000/post/2016/11/27/Iris_Test.html">&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#loading-packages&quot; id=&quot;markdown-toc-loading-packages&quot;&gt;Loading packages&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#looking-at-the-data&quot; id=&quot;markdown-toc-looking-at-the-data&quot;&gt;Looking at the Data&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#descriptive-statistics&quot; id=&quot;markdown-toc-descriptive-statistics&quot;&gt;Descriptive Statistics&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This post uses the Iris dataset initially collected by Edgar Anderson and
 introduced by Ronald Fisher.&lt;/p&gt;
 
 &lt;h3 id=&quot;loading-packages&quot;&gt;Loading packages&lt;/h3&gt;
@@ -585,4 +591,4 @@ for(i in 1:4) {
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;/img/post_images/2016-11-27-iris-test/unnamed-chunk-4-2.png&quot; alt=&quot;Density Plot by Species&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><category term="post" /><summary type="html">This post uses the Iris dataset initially collected by Edgar Anderson and introduced by Ronald Fisher.</summary></entry></feed>
+&lt;p&gt;&lt;img src=&quot;/img/post_images/2016-11-27-iris-test/unnamed-chunk-4-2.png&quot; alt=&quot;Density Plot by Species&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><category term="post" /><summary type="html"></summary></entry></feed>
