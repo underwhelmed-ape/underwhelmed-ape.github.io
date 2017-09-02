@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.3.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-09-02T00:01:43+01:00</updated><id>http://localhost:4000/</id><title type="html">Infobesity</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.3.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-09-02T19:46:52+01:00</updated><id>http://localhost:4000/</id><title type="html">Infobesity</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 </subtitle><entry><title type="html">Insect Survey Web Scraping</title><link href="http://localhost:4000/post/2017/09/01/RIS.html" rel="alternate" type="text/html" title="Insect Survey Web Scraping" /><published>2017-09-01T00:00:00+01:00</published><updated>2017-09-01T00:00:00+01:00</updated><id>http://localhost:4000/post/2017/09/01/RIS</id><content type="html" xml:base="http://localhost:4000/post/2017/09/01/RIS.html">&lt;h2 id=&quot;introduction-to-rothamsteds-insect-survey&quot;&gt;Introduction to Rothamsted’s Insect Survey&lt;/h2&gt;
 
 &lt;p&gt;Rothamsted is the UK’s leading agricultural research institutes. It is
@@ -515,80 +515,4 @@ analysis.&lt;/p&gt;
 ## [21] rmarkdown_1.6    labeling_0.3     stringi_1.1.5    scales_0.4.1    
 ## [25] backports_1.0.5  XML_3.98-1.5     foreign_0.8-67
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name></name></author><category term="post" /><summary type="html">Introduction to Rothamsted’s Insect Survey</summary></entry><entry><title type="html">Iris Test</title><link href="http://localhost:4000/post/2016/11/27/Iris_Test.html" rel="alternate" type="text/html" title="Iris Test" /><published>2016-11-27T00:00:00+00:00</published><updated>2016-11-27T00:00:00+00:00</updated><id>http://localhost:4000/post/2016/11/27/Iris_Test</id><content type="html" xml:base="http://localhost:4000/post/2016/11/27/Iris_Test.html">&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#loading-packages&quot; id=&quot;markdown-toc-loading-packages&quot;&gt;Loading packages&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#looking-at-the-data&quot; id=&quot;markdown-toc-looking-at-the-data&quot;&gt;Looking at the Data&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#descriptive-statistics&quot; id=&quot;markdown-toc-descriptive-statistics&quot;&gt;Descriptive Statistics&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This post uses the Iris dataset initially collected by Edgar Anderson and
-introduced by Ronald Fisher.&lt;/p&gt;
-
-&lt;h3 id=&quot;loading-packages&quot;&gt;Loading packages&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;library(mlbench)
-library(caret)
-
-## Loading required package: lattice
-
-## Loading required package: ggplot2
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;looking-at-the-data&quot;&gt;Looking at the Data&lt;/h2&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;head(iris)
-
-##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-## 1          5.1         3.5          1.4         0.2  setosa
-## 2          4.9         3.0          1.4         0.2  setosa
-## 3          4.7         3.2          1.3         0.2  setosa
-## 4          4.6         3.1          1.5         0.2  setosa
-## 5          5.0         3.6          1.4         0.2  setosa
-## 6          5.4         3.9          1.7         0.4  setosa
-
-dim(iris)
-
-## [1] 150   5
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;descriptive-statistics&quot;&gt;Descriptive Statistics&lt;/h2&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;summary(iris)
-
-##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
-##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
-##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
-##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
-##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
-##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
-##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
-##        Species  
-##  setosa    :50  
-##  versicolor:50  
-##  virginica :50  
-##                 
-##                 
-##
-
-sapply(iris[,1:4], sd)
-
-## Sepal.Length  Sepal.Width Petal.Length  Petal.Width
-##    0.8280661    0.4358663    1.7652982    0.7622377
-
-plot(iris)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/post_images/2016-11-27-iris-test/unnamed-chunk-4-1.png&quot; alt=&quot;Scatterplot Matrix of Iris dataset&quot; /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# create a layout of density plots by attribute
-par(mfrow=c(1,4))
-for(i in 1:4) {
-  plot(density(iris[,i]), main=names(iris)[i])
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/post_images/2016-11-27-iris-test/unnamed-chunk-4-2.png&quot; alt=&quot;Density Plot by Species&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><category term="post" /><summary type="html"></summary></entry></feed>
+&lt;/div&gt;</content><author><name></name></author><category term="post" /><summary type="html">Introduction to Rothamsted’s Insect Survey</summary></entry></feed>
