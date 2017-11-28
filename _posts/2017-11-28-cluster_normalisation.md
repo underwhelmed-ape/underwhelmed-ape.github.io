@@ -5,7 +5,7 @@ description: "How and why to normalise data before clustering"
 Author: James
 date: 2017-11-28
 category: post
-cover_image: "post_images/RIS/RIS-cover.jpeg"
+cover_image: "post_images/cluster_normalisation/lights_background.jpeg"
 ---
 
 Introduction
@@ -86,7 +86,7 @@ The range of the X-variable is larger than the range of Y.
     type = "histogram", fill = "lightgrey"
     )
 
-<img src="images/unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
+<img src="/img/post_images/cluster_normalisation/unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
 
 Data Analysis and Results
 =========================
@@ -112,7 +112,7 @@ K-means on un-scaled data
         guides(color = FALSE) + # remove legend
         theme_bw()
 
-<img src="images/unnamed-chunk-3-1.png" style="display: block; margin: auto;" />
+<img src="/img/post_images/cluster_normalisation/unnamed-chunk-3-1.png" style="display: block; margin: auto;" />
 
 The algorithm has not clustered the data as we might have expected.
 R-plots default to maximising the screen space and will distort each
@@ -126,7 +126,7 @@ be difficult to see why the clusters have formed around these centroids.
         coord_fixed() + # maintain correct aspect ratio (assuming change in x is same as change in y)
         theme_bw()
 
-<img src="images/unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
+<img src="/img/post_images/cluster_normalisation/unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
 
 This plot now maintains the aspect ratio, creating representative
 distances between points.
@@ -192,7 +192,7 @@ Where: *x* = data vector and *x*′ = normalised x
         geom_point() +
         theme_bw()
 
-<img src="images/unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
+<img src="/img/post_images/cluster_normalisation/unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
 
 K-means on Scaled Data
 ----------------------
@@ -228,7 +228,7 @@ the lowest error rate. This is done using the `nstart = n` argument in
         guides(color = FALSE) + # remove legend
         theme_bw()
 
-<img src="images/unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
+<img src="/img/post_images/cluster_normalisation/unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
 
 The impact of feature scaling can be seen. this now satisfies the
 assumptions of the Ordinary Least Squares, that minimises the sum of

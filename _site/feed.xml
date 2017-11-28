@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.3.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-11-28T18:27:35+00:00</updated><id>http://localhost:4000/</id><title type="html">Infobesity</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-</subtitle><entry><title type="html">Cluster_normalisation</title><link href="http://localhost:4000/2017/11/28/cluster_normalisation.html" rel="alternate" type="text/html" title="Cluster_normalisation" /><published>2017-11-28T00:00:00+00:00</published><updated>2017-11-28T00:00:00+00:00</updated><id>http://localhost:4000/2017/11/28/cluster_normalisation</id><content type="html" xml:base="http://localhost:4000/2017/11/28/cluster_normalisation.html">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.3.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-11-28T19:03:40+00:00</updated><id>http://localhost:4000/</id><title type="html">Infobesity</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</subtitle><entry><title type="html">Feature Scaling for K-means</title><link href="http://localhost:4000/post/2017/11/28/cluster_normalisation.html" rel="alternate" type="text/html" title="Feature Scaling for K-means" /><published>2017-11-28T00:00:00+00:00</published><updated>2017-11-28T00:00:00+00:00</updated><id>http://localhost:4000/post/2017/11/28/cluster_normalisation</id><content type="html" xml:base="http://localhost:4000/post/2017/11/28/cluster_normalisation.html">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 
 &lt;p&gt;This is a demonstration of the importance of normalising (also known as
 standardising) data with distance based clustering techniques like
@@ -89,7 +89,7 @@ type = &quot;histogram&quot;, fill = &quot;lightgrey&quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;images/unnamed-chunk-2-1.png&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/post_images/cluster_normalisation/unnamed-chunk-2-1.png&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;data-analysis-and-results&quot;&gt;Data Analysis and Results&lt;/h1&gt;
 
@@ -115,7 +115,7 @@ ggplot(df, aes(x = x, y = y)) +
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;images/unnamed-chunk-3-1.png&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/post_images/cluster_normalisation/unnamed-chunk-3-1.png&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The algorithm has not clustered the data as we might have expected.
 R-plots default to maximising the screen space and will distort each
@@ -131,7 +131,7 @@ be difficult to see why the clusters have formed around these centroids.&lt;/p&g
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;images/unnamed-chunk-4-1.png&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/post_images/cluster_normalisation/unnamed-chunk-4-1.png&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;This plot now maintains the aspect ratio, creating representative
 distances between points.&lt;/p&gt;
@@ -148,7 +148,7 @@ case:&lt;/p&gt;
     summarise(range_x = max(x) - min(x),
               range_y = max(y) - min(y),
               var_x = var(x),
-              var_y = var(y)) %&amp;gt;% 
+              var_y = var(y)) %&amp;gt;%
     round(., 2) # round to 2 d.p.
 
 ##   range_x range_y var_x var_y
@@ -190,7 +190,7 @@ head(df_scaled)
 ## 5 0.1403063 0.1865991
 ## 6 0.2338890 0.3910346
 
-ggplot(data = df_scaled, 
+ggplot(data = df_scaled,
        mapping = aes(x = x_scaled, y = y_scaled)
        ) +
     geom_point() +
@@ -198,7 +198,7 @@ ggplot(data = df_scaled,
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;images/unnamed-chunk-8-1.png&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/post_images/cluster_normalisation/unnamed-chunk-8-1.png&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;k-means-on-scaled-data&quot;&gt;K-means on Scaled Data&lt;/h2&gt;
 
@@ -235,7 +235,7 @@ ggplot(df, aes(x = x, y = y)) +
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;images/unnamed-chunk-9-1.png&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/post_images/cluster_normalisation/unnamed-chunk-9-1.png&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The impact of feature scaling can be seen. this now satisfies the
 assumptions of the Ordinary Least Squares, that minimises the sum of
@@ -248,35 +248,35 @@ squared errors, resulting in a more intuitive clustering.&lt;/p&gt;
 ## R version 3.4.2 (2017-09-28)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows 10 x64 (build 16299)
-## 
+##
 ## Matrix products: default
-## 
+##
 ## locale:
-## [1] LC_COLLATE=English_United Kingdom.1252 
+## [1] LC_COLLATE=English_United Kingdom.1252
 ## [2] LC_CTYPE=English_United Kingdom.1252   
 ## [3] LC_MONETARY=English_United Kingdom.1252
 ## [4] LC_NUMERIC=C                           
 ## [5] LC_TIME=English_United Kingdom.1252    
-## 
+##
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
+##
 ## other attached packages:
 ## [1] bindrcpp_0.2       ggExtra_0.7        ggplot2_2.2.1.9000
 ## [4] dplyr_0.7.4       
-## 
+##
 ## loaded via a namespace (and not attached):
 ##  [1] Rcpp_0.12.14     knitr_1.17       bindr_0.1        magrittr_1.5    
 ##  [5] munsell_0.4.3    xtable_1.8-2     colorspace_1.3-2 R6_2.2.2        
 ##  [9] rlang_0.1.4      plyr_1.8.4       stringr_1.2.0    tools_3.4.2     
-## [13] grid_3.4.2       gtable_0.2.0     miniUI_0.1.1     htmltools_0.3.6 
+## [13] grid_3.4.2       gtable_0.2.0     miniUI_0.1.1     htmltools_0.3.6
 ## [17] lazyeval_0.2.1   yaml_2.1.14      assertthat_0.2.0 rprojroot_1.2   
 ## [21] digest_0.6.12    tibble_1.3.4     shiny_1.0.5      mime_0.5        
 ## [25] glue_1.2.0       evaluate_0.10.1  rmarkdown_1.8    labeling_0.3    
-## [29] stringi_1.1.6    compiler_3.4.2   scales_0.5.0     backports_1.1.1 
+## [29] stringi_1.1.6    compiler_3.4.2   scales_0.5.0     backports_1.1.1
 ## [33] httpuv_1.3.5     pkgconfig_2.0.1
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name></name></author><summary type="html">Introduction</summary></entry><entry><title type="html">Insect Survey Web Scraping</title><link href="http://localhost:4000/post/2017/09/01/RIS.html" rel="alternate" type="text/html" title="Insect Survey Web Scraping" /><published>2017-09-01T00:00:00+01:00</published><updated>2017-09-01T00:00:00+01:00</updated><id>http://localhost:4000/post/2017/09/01/RIS</id><content type="html" xml:base="http://localhost:4000/post/2017/09/01/RIS.html">&lt;h2 id=&quot;introduction-to-rothamsteds-insect-survey&quot;&gt;Introduction to Rothamsted’s Insect Survey&lt;/h2&gt;
+&lt;/div&gt;</content><author><name></name></author><category term="post" /><summary type="html">Introduction</summary></entry><entry><title type="html">Insect Survey Web Scraping</title><link href="http://localhost:4000/post/2017/09/01/RIS.html" rel="alternate" type="text/html" title="Insect Survey Web Scraping" /><published>2017-09-01T00:00:00+01:00</published><updated>2017-09-01T00:00:00+01:00</updated><id>http://localhost:4000/post/2017/09/01/RIS</id><content type="html" xml:base="http://localhost:4000/post/2017/09/01/RIS.html">&lt;h2 id=&quot;introduction-to-rothamsteds-insect-survey&quot;&gt;Introduction to Rothamsted’s Insect Survey&lt;/h2&gt;
 
 &lt;p&gt;Rothamsted is the UK’s leading agricultural research institutes. It is
 also the world’s oldest agricultural institute and still maintains the
