@@ -1,3 +1,13 @@
+---
+layout: post_layout
+title: "Feature Scaling for K-means"
+description: "How and why to normalise data before clustering"
+Author: James
+date: 2017-11-28
+category: post
+cover_image: "post_images/RIS/RIS-cover.jpeg"
+---
+
 Introduction
 ============
 
@@ -133,7 +143,7 @@ case:
         summarise(range_x = max(x) - min(x),
                   range_y = max(y) - min(y),
                   var_x = var(x),
-                  var_y = var(y)) %>% 
+                  var_y = var(y)) %>%
         round(., 2) # round to 2 d.p.
 
     ##   range_x range_y var_x var_y
@@ -149,7 +159,7 @@ Normilisation eliminates the problem of different scales by bringing all
 values between 0 and 1. There are various ways to scale data, here I
 have used Unity based normalisation.
 
-$$ 
+$$
 x\\prime = \\frac{x - min(x)}{max(x) - min(x)}
 $$
 
@@ -176,7 +186,7 @@ Where: *x* = data vector and *x*′ = normalised x
     ## 5 0.1403063 0.1865991
     ## 6 0.2338890 0.3910346
 
-    ggplot(data = df_scaled, 
+    ggplot(data = df_scaled,
            mapping = aes(x = x_scaled, y = y_scaled)
            ) +
         geom_point() +
@@ -232,30 +242,30 @@ Session Information
     ## R version 3.4.2 (2017-09-28)
     ## Platform: x86_64-w64-mingw32/x64 (64-bit)
     ## Running under: Windows 10 x64 (build 16299)
-    ## 
+    ##
     ## Matrix products: default
-    ## 
+    ##
     ## locale:
-    ## [1] LC_COLLATE=English_United Kingdom.1252 
+    ## [1] LC_COLLATE=English_United Kingdom.1252
     ## [2] LC_CTYPE=English_United Kingdom.1252   
     ## [3] LC_MONETARY=English_United Kingdom.1252
     ## [4] LC_NUMERIC=C                           
     ## [5] LC_TIME=English_United Kingdom.1252    
-    ## 
+    ##
     ## attached base packages:
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
-    ## 
+    ##
     ## other attached packages:
     ## [1] bindrcpp_0.2       ggExtra_0.7        ggplot2_2.2.1.9000
     ## [4] dplyr_0.7.4       
-    ## 
+    ##
     ## loaded via a namespace (and not attached):
     ##  [1] Rcpp_0.12.14     knitr_1.17       bindr_0.1        magrittr_1.5    
     ##  [5] munsell_0.4.3    xtable_1.8-2     colorspace_1.3-2 R6_2.2.2        
     ##  [9] rlang_0.1.4      plyr_1.8.4       stringr_1.2.0    tools_3.4.2     
-    ## [13] grid_3.4.2       gtable_0.2.0     miniUI_0.1.1     htmltools_0.3.6 
+    ## [13] grid_3.4.2       gtable_0.2.0     miniUI_0.1.1     htmltools_0.3.6
     ## [17] lazyeval_0.2.1   yaml_2.1.14      assertthat_0.2.0 rprojroot_1.2   
     ## [21] digest_0.6.12    tibble_1.3.4     shiny_1.0.5      mime_0.5        
     ## [25] glue_1.2.0       evaluate_0.10.1  rmarkdown_1.8    labeling_0.3    
-    ## [29] stringi_1.1.6    compiler_3.4.2   scales_0.5.0     backports_1.1.1 
+    ## [29] stringi_1.1.6    compiler_3.4.2   scales_0.5.0     backports_1.1.1
     ## [33] httpuv_1.3.5     pkgconfig_2.0.1
