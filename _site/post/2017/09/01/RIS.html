@@ -116,19 +116,18 @@ single time-series dataframe suitable for analysis.</p>
 
 <h3 id="setting-knitr-global-options">Setting Knitr Global Options</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>knitr::opts_chunk$set(echo = TRUE,
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>knitr::opts_chunk$set(echo = TRUE,
                       fig.path = "images/",
                       fig.width = 8,
                       fig.height = 6,
                       fig.align = "center",
                       warning = FALSE,
                       message = FALSE)
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="installed-packages">Installed Packages</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code># Data Manipulation
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Data Manipulation
 library(dplyr)
 library(stringr)
 library(lubridate)
@@ -142,8 +141,7 @@ library(httr)
 # Data Visualisation
 library(ggplot2)
 library(Amelia) # missmap function
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="accessing-the-data">Accessing the Data</h2>
 
@@ -160,7 +158,7 @@ and scrape from.</p>
 <code class="highlighter-rouge">PageURL</code>s will be concatenated onto the end of the base URL (<code class="highlighter-rouge">surveys</code>)
 to access each page.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>surveys &lt;- read_html("http://resources.rothamsted.ac.uk/insect-survey/bulletins")
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>surveys &lt;- read_html("http://resources.rothamsted.ac.uk/insect-survey/bulletins")
 
 pagination &lt;-
     data.frame(
@@ -191,8 +189,7 @@ pagination
 ## 4   Page 4 /?page=3
 ## 5   Page 5 /?page=4
 ## 6   Page 6 /?page=5
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="extracting-elements-from-base-url">Extracting elements from Base URL</h3>
 
@@ -206,7 +203,7 @@ bulletins, containing the data, have a common naming pattern within
 their title <code class="highlighter-rouge">"Bulletin No: "</code>. I used <code class="highlighter-rouge">grep</code> to only bring back those
 instances that contain that pattern.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>all_bulletins &lt;- data.frame() # create empty dataframe for the bulletin list.
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>all_bulletins &lt;- data.frame() # create empty dataframe for the bulletin list.
 
 # Loop through each page in pagination dataframe, extract title and url of each link.
 
@@ -234,8 +231,7 @@ all_bulletins %&gt;% glimpse
 ## Variables: 2
 ## $ BulletinName &lt;fctr&gt; Bulletin No: 22. 21 August - 27 August 2017, Bul...
 ## $ BulletinUrl  &lt;fctr&gt; /insect-survey-bulletins/bulletin-no-22-21-augus...
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="inspecting-the-dataframe">Inspecting the Dataframe</h3>
 
@@ -245,7 +241,7 @@ of knowing which data comes from each Bulletin after putting them all
 together, I will extract information from the names here using Regular
 Expressions.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code># Regex to extract constituents from bulletin names
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Regex to extract constituents from bulletin names
 
 all_bulletins %&gt;%
     mutate(BulletinNo = str_extract(string = all_bulletins$BulletinName, "Bulletin No: \\d+"),
@@ -278,8 +274,7 @@ tail(all_bulletins)
 ## 120 Bulletin No: 2 &lt;NA&gt;       07 - 13 April
 ## 121 Bulletin No: 3 &lt;NA&gt;       14 - 20 April
 ## 122 Bulletin No: 1 &lt;NA&gt; 31 March - 06 April
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>If we view this now, I have extracted and added as separate factors, the
 Bulletin number, the year and the range of dates that the data covers.
@@ -289,9 +284,8 @@ ranges vary in how they were written.</p>
 
 <p>Adding 2014 to the year manually:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>all_bulletins$year[is.na(all_bulletins$year)] &lt;- "2014"
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>all_bulletins$year[is.na(all_bulletins$year)] &lt;- "2014"
+</code></pre></div></div>
 
 <h3 id="creating-an-aphid-collection-date">Creating an Aphid Collection Date</h3>
 
@@ -299,7 +293,7 @@ ranges vary in how they were written.</p>
 date from each title. As mentioned before, the formats are not always
 consistent:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>str_extract(string = all_bulletins$date_range,
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>str_extract(string = all_bulletins$date_range,
             pattern = "\\d+ \\w+ ")
 
 ##   [1] "21 August "    "14 August "    "07 August "    "31 July "     
@@ -333,15 +327,14 @@ consistent:</p>
 ## [113] "09 June "      "02 June "      "26 May "       "19 May "      
 ## [117] "12 May "       "05 May "       "28 April "     NA             
 ## [121] NA              "31 March "
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>This shows that the naming format is not constant resulting in two
 outputs with NA. As such I extract each element individually and
 concatenate them to form a date that is the beginning of each data
 collection exercise.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>paste(
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>paste(
 # Match first numbers in each string
 str_extract(string = all_bulletins$date_range,
             pattern = "\\d+"),
@@ -394,13 +387,12 @@ sep = " "
 ## [115] "26 May 2014"       "19 May 2014"       "12 May 2014"      
 ## [118] "05 May 2014"       "28 April 2014"     "07 April 2014"    
 ## [121] "14 April 2014"     "31 March 2014"
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Adding this into the <code class="highlighter-rouge">all_bulletins</code> dataframe as a new factor, and give
 this a date fomat.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>all_bulletins %&gt;%
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>all_bulletins %&gt;%
     mutate(week_start =
                paste(
 str_extract(string = all_bulletins$date_range,
@@ -424,8 +416,7 @@ str(all_bulletins)
 ##  $ year        : chr  "2017" "2017" "2017" "2017" ...
 ##  $ date_range  : chr  "21 August - 27 August 2017" "14 August - 20 August 2017" "07 August - 13 August 2017" "31 July - 06 August 2017" ...
 ##  $ week_start  : Date, format: "2017-08-21" "2017-08-14" ...
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="extracting-the-data">Extracting the Data</h2>
 
@@ -441,7 +432,7 @@ same. In this case, over such a timescale the locations of the insect
 traps may not stay constant over the years. The function <code class="highlighter-rouge">bind_rows()</code>
 will retain all columns and place ‘NA’ in the spaces.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>data.list = list()
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>data.list = list()
 
 for(index in (1:nrow(all_bulletins))) {
     tryCatch({
@@ -465,8 +456,7 @@ for(index in (1:nrow(all_bulletins))) {
 
 ## Warning: closing unused connection 5 (http://resources.rothamsted.ac.uk/
 ## insect-survey-bulletins/bulletin-no-34-07-november-13-november-2016)
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>This outputs a warning about closing an unused connection with the
 number and the URL. This informs us that bulletin number 34 from the 7th
@@ -474,9 +464,8 @@ November to 13th November 2016 could not be accessed. This was the
 purpose of the <code class="highlighter-rouge">tryCatch</code>, without which the loop would stop executing
 the script after receiving the error.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>all.data &lt;- do.call(bind_rows, data.list)
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>all.data &lt;- do.call(bind_rows, data.list)
+</code></pre></div></div>
 
 <p>Within this, I am assuming that where cells within the table are blank,
 no aphids of that specied were found and have been replaced with a <code class="highlighter-rouge">0</code>.
@@ -485,25 +474,23 @@ which will contain <code class="highlighter-rouge">NA</code>.</p>
 
 <p>Renaming some columns</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>data.table::setnames(all.data,
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>data.table::setnames(all.data,
                      old = c('Var.1','year', 'bulletin.number', 'index'),
                      new = c("Aphid_sp", "Year", "Bulletin_Number", "Index")
                      )
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>In the data there are observations that lists the number of part catches
 and number of days of catching. Removing these.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>all.data %&gt;%
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>all.data %&gt;%
     filter(Aphid_sp != "Days") %&gt;%
     filter(Aphid_sp != "Part Catches") -&gt; all.data
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="inspecting-the-final-dataset">Inspecting the Final Dataset</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>summary(all.data)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>summary(all.data)
 
 ##    Aphid_sp               El                 D                 G          
 ##  Length:2541        Min.   :   0.000   Min.   :  0.000   Min.   :   0.00  
@@ -559,8 +546,7 @@ Amelia::missmap(all.data,
                 y.labels = c(2500, 2250, 2000, 1750, 1500, 1250, 1000, 750, 500, 250, 1),
                 y.at = c(1, 250, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500)+20,
                 main = "Missing data Map")
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><img src="/img/post_images/RIS/unnamed-chunk-9-1.png" style="display: block; margin: auto; width: 750px;" /></p>
 
@@ -570,7 +556,7 @@ chunks of time at the beginning of the period. Also the collection at
 
 <p>Plotting Aphid species counts for Rothamsted Tower.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>all.data %&gt;%
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>all.data %&gt;%
     ggplot(aes(x = week_start, y = RT)) +
     geom_point() +
     theme_bw() +
@@ -578,8 +564,7 @@ chunks of time at the beginning of the period. Also the collection at
         title = "Aphid Species Captured at Rothamsted Tower",
         x = "Collection Date",
         y = "Aphid Counts")
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><img src="/img/post_images/RIS/unnamed-chunk-10-1.png" style="display: block; margin: auto; width: 750px;" /></p>
 
@@ -588,7 +573,7 @@ analysis.</p>
 
 <h2 id="session-info">Session Info</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>## R version 3.3.3 (2017-03-06)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## R version 3.3.3 (2017-03-06)
 ## Platform: x86_64-apple-darwin13.4.0 (64-bit)
 ## Running under: macOS Sierra 10.12.6
 ##
@@ -612,8 +597,7 @@ analysis.</p>
 ## [17] digest_0.6.12    tibble_1.2       curl_2.3         evaluate_0.10.1
 ## [21] rmarkdown_1.6    labeling_0.3     stringi_1.1.5    scales_0.4.1    
 ## [25] backports_1.0.5  XML_3.98-1.5     foreign_0.8-67
-</code></pre>
-</div>
+</code></pre></div></div>
 
 
                     <div class="row">
@@ -676,7 +660,7 @@ analysis.</p>
                       </a>
                   </li>
                 </ul>
-                <p class="copyright text-muted">Copyright &copy; Infobesity 2017</p>
+                <p class="copyright text-muted">Copyright &copy; Infobesity 2018</p>
             </div>
         </div>
     </div>

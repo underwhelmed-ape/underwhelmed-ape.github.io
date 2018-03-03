@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.3.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-11-28T19:03:40+00:00</updated><id>http://localhost:4000/</id><title type="html">Infobesity</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-03-03T18:57:15+00:00</updated><id>http://localhost:4000/</id><title type="html">Infobesity</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 </subtitle><entry><title type="html">Feature Scaling for K-means</title><link href="http://localhost:4000/post/2017/11/28/cluster_normalisation.html" rel="alternate" type="text/html" title="Feature Scaling for K-means" /><published>2017-11-28T00:00:00+00:00</published><updated>2017-11-28T00:00:00+00:00</updated><id>http://localhost:4000/post/2017/11/28/cluster_normalisation</id><content type="html" xml:base="http://localhost:4000/post/2017/11/28/cluster_normalisation.html">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 
 &lt;p&gt;This is a demonstration of the importance of normalising (also known as
@@ -44,15 +44,14 @@ and will thus differ in their variances.&lt;/p&gt;
 
 &lt;h2 id=&quot;packages&quot;&gt;Packages&lt;/h2&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;library(dplyr) # Data Manipulation
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;library(dplyr) # Data Manipulation
 library(ggplot2) # Data Visualisation
 library(ggExtra) # Adding marginal plots to ggplots
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h1 id=&quot;simulating-the-data&quot;&gt;Simulating the Data&lt;/h1&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Data along variable X to have single distribution with large range
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Data along variable X to have single distribution with large range
 x &amp;lt;- rnorm(1000) * 10 + 50
 
 # Data along Y to have two distributions with a smaller range
@@ -69,8 +68,7 @@ head(df)
 ## 4 45.10800  9.276210
 ## 5 27.84014  8.870390
 ## 6 33.45776 11.068927
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;In this bi-variate example, the data along the x-axis is drawn from a
 normal distribution and has a single modal value.&lt;/p&gt;
@@ -81,13 +79,12 @@ creating a separation between clusters.&lt;/p&gt;
 
 &lt;p&gt;The range of the X-variable is larger than the range of Y.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ggExtra::ggMarginal(
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ggExtra::ggMarginal(
     ggplot(df, aes(x = x, y = y)) +
         geom_point() + theme_bw(),
 type = &quot;histogram&quot;, fill = &quot;lightgrey&quot;
 )
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;img src=&quot;/img/post_images/cluster_normalisation/unnamed-chunk-2-1.png&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
 
@@ -95,7 +92,7 @@ type = &quot;histogram&quot;, fill = &quot;lightgrey&quot;
 
 &lt;h2 id=&quot;k-means-on-un-scaled-data&quot;&gt;K-means on un-scaled data&lt;/h2&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Perform K-means Clustering
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Perform K-means Clustering
 km &amp;lt;- kmeans(df, #features to be included in cluster model
              2, # number of clusters
              nstart = 20 # number of repeats
@@ -112,8 +109,7 @@ ggplot(df, aes(x = x, y = y)) +
     geom_point(data = centroids, aes(x = x, y = y, colour = Centroid), cex = 5, pch = 19) +
     guides(color = FALSE) + # remove legend
     theme_bw()
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;img src=&quot;/img/post_images/cluster_normalisation/unnamed-chunk-3-1.png&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
 
@@ -122,14 +118,13 @@ R-plots default to maximising the screen space and will distort each
 axis for a better visualisation, and with the plot in this format it can
 be difficult to see why the clusters have formed around these centroids.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ggplot(df, aes(x = x, y = y)) +
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ggplot(df, aes(x = x, y = y)) +
     geom_point(aes(color = as.factor(km$cluster)), pch = 19, alpha = 0.5) +
     geom_point(data = centroids, aes(x = x, y = y, colour = Centroid), cex = 5, pch = 19) +
     guides(color = FALSE) + # remove legend
     coord_fixed() + # maintain correct aspect ratio (assuming change in x is same as change in y)
     theme_bw()
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;img src=&quot;/img/post_images/cluster_normalisation/unnamed-chunk-4-1.png&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
 
@@ -144,7 +139,7 @@ data points, similar to linear regression.&lt;/p&gt;
 With the large difference in the scales of each feature, this is not the
 case:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;df %&amp;gt;%
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;df %&amp;gt;%
     summarise(range_x = max(x) - min(x),
               range_y = max(y) - min(y),
               var_x = var(x),
@@ -153,8 +148,7 @@ case:&lt;/p&gt;
 
 ##   range_x range_y var_x var_y
 ## 1   60.03   10.75 94.46  6.96
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;The data in this case are on different scales and thus more weighting is
 given to the feature with the largest range.&lt;/p&gt;
@@ -169,7 +163,7 @@ have used Unity based normalisation.&lt;/p&gt;
 
 &lt;p&gt;Where: &lt;em&gt;x&lt;/em&gt; = data vector and &lt;em&gt;x&lt;/em&gt;′ = normalised x&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Create Feature Scaling function that takes a numeric vector.
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Create Feature Scaling function that takes a numeric vector.
 scaling &amp;lt;- function(x){
     (x - min(x)) / (max(x) - min(x))
 }
@@ -195,8 +189,7 @@ ggplot(data = df_scaled,
        ) +
     geom_point() +
     theme_bw()
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;img src=&quot;/img/post_images/cluster_normalisation/unnamed-chunk-8-1.png&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
 
@@ -215,7 +208,7 @@ different randomly set initilisation values and choosing the result with
 the lowest error rate. This is done using the &lt;code class=&quot;highlighter-rouge&quot;&gt;nstart = n&lt;/code&gt; argument in
 &lt;code class=&quot;highlighter-rouge&quot;&gt;kmeans()&lt;/code&gt; function.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# run k-means on scaled data
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# run k-means on scaled data
 km_scaled &amp;lt;- kmeans(df_scaled, 2, nstart = 20)
 
 # create an unscale function to return values back to original scale
@@ -232,8 +225,7 @@ ggplot(df, aes(x = x, y = y)) +
     geom_point(data = centroids, aes(x = x, y = y, colour = Centroid), cex = 5, pch = 19) +
     guides(color = FALSE) + # remove legend
     theme_bw()
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;img src=&quot;/img/post_images/cluster_normalisation/unnamed-chunk-9-1.png&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
 
@@ -243,7 +235,7 @@ squared errors, resulting in a more intuitive clustering.&lt;/p&gt;
 
 &lt;h1 id=&quot;session-information&quot;&gt;Session Information&lt;/h1&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sessionInfo()
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sessionInfo()
 
 ## R version 3.4.2 (2017-09-28)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
@@ -275,8 +267,7 @@ squared errors, resulting in a more intuitive clustering.&lt;/p&gt;
 ## [25] glue_1.2.0       evaluate_0.10.1  rmarkdown_1.8    labeling_0.3    
 ## [29] stringi_1.1.6    compiler_3.4.2   scales_0.5.0     backports_1.1.1
 ## [33] httpuv_1.3.5     pkgconfig_2.0.1
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name></name></author><category term="post" /><summary type="html">Introduction</summary></entry><entry><title type="html">Insect Survey Web Scraping</title><link href="http://localhost:4000/post/2017/09/01/RIS.html" rel="alternate" type="text/html" title="Insect Survey Web Scraping" /><published>2017-09-01T00:00:00+01:00</published><updated>2017-09-01T00:00:00+01:00</updated><id>http://localhost:4000/post/2017/09/01/RIS</id><content type="html" xml:base="http://localhost:4000/post/2017/09/01/RIS.html">&lt;h2 id=&quot;introduction-to-rothamsteds-insect-survey&quot;&gt;Introduction to Rothamsted’s Insect Survey&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="post" /><summary type="html">Introduction</summary></entry><entry><title type="html">Insect Survey Web Scraping</title><link href="http://localhost:4000/post/2017/09/01/RIS.html" rel="alternate" type="text/html" title="Insect Survey Web Scraping" /><published>2017-09-01T00:00:00+01:00</published><updated>2017-09-01T00:00:00+01:00</updated><id>http://localhost:4000/post/2017/09/01/RIS</id><content type="html" xml:base="http://localhost:4000/post/2017/09/01/RIS.html">&lt;h2 id=&quot;introduction-to-rothamsteds-insect-survey&quot;&gt;Introduction to Rothamsted’s Insect Survey&lt;/h2&gt;
 
 &lt;p&gt;Rothamsted is the UK’s leading agricultural research institutes. It is
 also the world’s oldest agricultural institute and still maintains the
@@ -295,19 +286,18 @@ single time-series dataframe suitable for analysis.&lt;/p&gt;
 
 &lt;h3 id=&quot;setting-knitr-global-options&quot;&gt;Setting Knitr Global Options&lt;/h3&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;knitr::opts_chunk$set(echo = TRUE,
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;knitr::opts_chunk$set(echo = TRUE,
                       fig.path = &quot;images/&quot;,
                       fig.width = 8,
                       fig.height = 6,
                       fig.align = &quot;center&quot;,
                       warning = FALSE,
                       message = FALSE)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;installed-packages&quot;&gt;Installed Packages&lt;/h3&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Data Manipulation
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Data Manipulation
 library(dplyr)
 library(stringr)
 library(lubridate)
@@ -321,8 +311,7 @@ library(httr)
 # Data Visualisation
 library(ggplot2)
 library(Amelia) # missmap function
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;accessing-the-data&quot;&gt;Accessing the Data&lt;/h2&gt;
 
@@ -339,7 +328,7 @@ and scrape from.&lt;/p&gt;
 &lt;code class=&quot;highlighter-rouge&quot;&gt;PageURL&lt;/code&gt;s will be concatenated onto the end of the base URL (&lt;code class=&quot;highlighter-rouge&quot;&gt;surveys&lt;/code&gt;)
 to access each page.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;surveys &amp;lt;- read_html(&quot;http://resources.rothamsted.ac.uk/insect-survey/bulletins&quot;)
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;surveys &amp;lt;- read_html(&quot;http://resources.rothamsted.ac.uk/insect-survey/bulletins&quot;)
 
 pagination &amp;lt;-
     data.frame(
@@ -370,8 +359,7 @@ pagination
 ## 4   Page 4 /?page=3
 ## 5   Page 5 /?page=4
 ## 6   Page 6 /?page=5
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;extracting-elements-from-base-url&quot;&gt;Extracting elements from Base URL&lt;/h3&gt;
 
@@ -385,7 +373,7 @@ bulletins, containing the data, have a common naming pattern within
 their title &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Bulletin No: &quot;&lt;/code&gt;. I used &lt;code class=&quot;highlighter-rouge&quot;&gt;grep&lt;/code&gt; to only bring back those
 instances that contain that pattern.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;all_bulletins &amp;lt;- data.frame() # create empty dataframe for the bulletin list.
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;all_bulletins &amp;lt;- data.frame() # create empty dataframe for the bulletin list.
 
 # Loop through each page in pagination dataframe, extract title and url of each link.
 
@@ -413,8 +401,7 @@ all_bulletins %&amp;gt;% glimpse
 ## Variables: 2
 ## $ BulletinName &amp;lt;fctr&amp;gt; Bulletin No: 22. 21 August - 27 August 2017, Bul...
 ## $ BulletinUrl  &amp;lt;fctr&amp;gt; /insect-survey-bulletins/bulletin-no-22-21-augus...
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;inspecting-the-dataframe&quot;&gt;Inspecting the Dataframe&lt;/h3&gt;
 
@@ -424,7 +411,7 @@ of knowing which data comes from each Bulletin after putting them all
 together, I will extract information from the names here using Regular
 Expressions.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Regex to extract constituents from bulletin names
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Regex to extract constituents from bulletin names
 
 all_bulletins %&amp;gt;%
     mutate(BulletinNo = str_extract(string = all_bulletins$BulletinName, &quot;Bulletin No: \\d+&quot;),
@@ -457,8 +444,7 @@ tail(all_bulletins)
 ## 120 Bulletin No: 2 &amp;lt;NA&amp;gt;       07 - 13 April
 ## 121 Bulletin No: 3 &amp;lt;NA&amp;gt;       14 - 20 April
 ## 122 Bulletin No: 1 &amp;lt;NA&amp;gt; 31 March - 06 April
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;If we view this now, I have extracted and added as separate factors, the
 Bulletin number, the year and the range of dates that the data covers.
@@ -468,9 +454,8 @@ ranges vary in how they were written.&lt;/p&gt;
 
 &lt;p&gt;Adding 2014 to the year manually:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;all_bulletins$year[is.na(all_bulletins$year)] &amp;lt;- &quot;2014&quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;all_bulletins$year[is.na(all_bulletins$year)] &amp;lt;- &quot;2014&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;creating-an-aphid-collection-date&quot;&gt;Creating an Aphid Collection Date&lt;/h3&gt;
 
@@ -478,7 +463,7 @@ ranges vary in how they were written.&lt;/p&gt;
 date from each title. As mentioned before, the formats are not always
 consistent:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;str_extract(string = all_bulletins$date_range,
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;str_extract(string = all_bulletins$date_range,
             pattern = &quot;\\d+ \\w+ &quot;)
 
 ##   [1] &quot;21 August &quot;    &quot;14 August &quot;    &quot;07 August &quot;    &quot;31 July &quot;     
@@ -512,15 +497,14 @@ consistent:&lt;/p&gt;
 ## [113] &quot;09 June &quot;      &quot;02 June &quot;      &quot;26 May &quot;       &quot;19 May &quot;      
 ## [117] &quot;12 May &quot;       &quot;05 May &quot;       &quot;28 April &quot;     NA             
 ## [121] NA              &quot;31 March &quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;This shows that the naming format is not constant resulting in two
 outputs with NA. As such I extract each element individually and
 concatenate them to form a date that is the beginning of each data
 collection exercise.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;paste(
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;paste(
 # Match first numbers in each string
 str_extract(string = all_bulletins$date_range,
             pattern = &quot;\\d+&quot;),
@@ -573,13 +557,12 @@ sep = &quot; &quot;
 ## [115] &quot;26 May 2014&quot;       &quot;19 May 2014&quot;       &quot;12 May 2014&quot;      
 ## [118] &quot;05 May 2014&quot;       &quot;28 April 2014&quot;     &quot;07 April 2014&quot;    
 ## [121] &quot;14 April 2014&quot;     &quot;31 March 2014&quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Adding this into the &lt;code class=&quot;highlighter-rouge&quot;&gt;all_bulletins&lt;/code&gt; dataframe as a new factor, and give
 this a date fomat.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;all_bulletins %&amp;gt;%
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;all_bulletins %&amp;gt;%
     mutate(week_start =
                paste(
 str_extract(string = all_bulletins$date_range,
@@ -603,8 +586,7 @@ str(all_bulletins)
 ##  $ year        : chr  &quot;2017&quot; &quot;2017&quot; &quot;2017&quot; &quot;2017&quot; ...
 ##  $ date_range  : chr  &quot;21 August - 27 August 2017&quot; &quot;14 August - 20 August 2017&quot; &quot;07 August - 13 August 2017&quot; &quot;31 July - 06 August 2017&quot; ...
 ##  $ week_start  : Date, format: &quot;2017-08-21&quot; &quot;2017-08-14&quot; ...
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;extracting-the-data&quot;&gt;Extracting the Data&lt;/h2&gt;
 
@@ -620,7 +602,7 @@ same. In this case, over such a timescale the locations of the insect
 traps may not stay constant over the years. The function &lt;code class=&quot;highlighter-rouge&quot;&gt;bind_rows()&lt;/code&gt;
 will retain all columns and place ‘NA’ in the spaces.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;data.list = list()
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;data.list = list()
 
 for(index in (1:nrow(all_bulletins))) {
     tryCatch({
@@ -644,8 +626,7 @@ for(index in (1:nrow(all_bulletins))) {
 
 ## Warning: closing unused connection 5 (http://resources.rothamsted.ac.uk/
 ## insect-survey-bulletins/bulletin-no-34-07-november-13-november-2016)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;This outputs a warning about closing an unused connection with the
 number and the URL. This informs us that bulletin number 34 from the 7th
@@ -653,9 +634,8 @@ November to 13th November 2016 could not be accessed. This was the
 purpose of the &lt;code class=&quot;highlighter-rouge&quot;&gt;tryCatch&lt;/code&gt;, without which the loop would stop executing
 the script after receiving the error.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;all.data &amp;lt;- do.call(bind_rows, data.list)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;all.data &amp;lt;- do.call(bind_rows, data.list)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Within this, I am assuming that where cells within the table are blank,
 no aphids of that specied were found and have been replaced with a &lt;code class=&quot;highlighter-rouge&quot;&gt;0&lt;/code&gt;.
@@ -664,25 +644,23 @@ which will contain &lt;code class=&quot;highlighter-rouge&quot;&gt;NA&lt;/code&g
 
 &lt;p&gt;Renaming some columns&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;data.table::setnames(all.data,
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;data.table::setnames(all.data,
                      old = c('Var.1','year', 'bulletin.number', 'index'),
                      new = c(&quot;Aphid_sp&quot;, &quot;Year&quot;, &quot;Bulletin_Number&quot;, &quot;Index&quot;)
                      )
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;In the data there are observations that lists the number of part catches
 and number of days of catching. Removing these.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;all.data %&amp;gt;%
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;all.data %&amp;gt;%
     filter(Aphid_sp != &quot;Days&quot;) %&amp;gt;%
     filter(Aphid_sp != &quot;Part Catches&quot;) -&amp;gt; all.data
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;inspecting-the-final-dataset&quot;&gt;Inspecting the Final Dataset&lt;/h3&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;summary(all.data)
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;summary(all.data)
 
 ##    Aphid_sp               El                 D                 G          
 ##  Length:2541        Min.   :   0.000   Min.   :  0.000   Min.   :   0.00  
@@ -738,8 +716,7 @@ Amelia::missmap(all.data,
                 y.labels = c(2500, 2250, 2000, 1750, 1500, 1250, 1000, 750, 500, 250, 1),
                 y.at = c(1, 250, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500)+20,
                 main = &quot;Missing data Map&quot;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;img src=&quot;/img/post_images/RIS/unnamed-chunk-9-1.png&quot; style=&quot;display: block; margin: auto; width: 750px;&quot; /&gt;&lt;/p&gt;
 
@@ -749,7 +726,7 @@ chunks of time at the beginning of the period. Also the collection at
 
 &lt;p&gt;Plotting Aphid species counts for Rothamsted Tower.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;all.data %&amp;gt;%
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;all.data %&amp;gt;%
     ggplot(aes(x = week_start, y = RT)) +
     geom_point() +
     theme_bw() +
@@ -757,8 +734,7 @@ chunks of time at the beginning of the period. Also the collection at
         title = &quot;Aphid Species Captured at Rothamsted Tower&quot;,
         x = &quot;Collection Date&quot;,
         y = &quot;Aphid Counts&quot;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;img src=&quot;/img/post_images/RIS/unnamed-chunk-10-1.png&quot; style=&quot;display: block; margin: auto; width: 750px;&quot; /&gt;&lt;/p&gt;
 
@@ -767,7 +743,7 @@ analysis.&lt;/p&gt;
 
 &lt;h2 id=&quot;session-info&quot;&gt;Session Info&lt;/h2&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;## R version 3.3.3 (2017-03-06)
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;## R version 3.3.3 (2017-03-06)
 ## Platform: x86_64-apple-darwin13.4.0 (64-bit)
 ## Running under: macOS Sierra 10.12.6
 ##
@@ -791,5 +767,4 @@ analysis.&lt;/p&gt;
 ## [17] digest_0.6.12    tibble_1.2       curl_2.3         evaluate_0.10.1
 ## [21] rmarkdown_1.6    labeling_0.3     stringi_1.1.5    scales_0.4.1    
 ## [25] backports_1.0.5  XML_3.98-1.5     foreign_0.8-67
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name></name></author><category term="post" /><summary type="html">Introduction to Rothamsted’s Insect Survey</summary></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="post" /><summary type="html">Introduction to Rothamsted’s Insect Survey</summary></entry></feed>

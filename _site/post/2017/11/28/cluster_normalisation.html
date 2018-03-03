@@ -142,15 +142,14 @@ and will thus differ in their variances.</p>
 
 <h2 id="packages">Packages</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>library(dplyr) # Data Manipulation
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>library(dplyr) # Data Manipulation
 library(ggplot2) # Data Visualisation
 library(ggExtra) # Adding marginal plots to ggplots
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="simulating-the-data">Simulating the Data</h1>
 
-<div class="highlighter-rouge"><pre class="highlight"><code># Data along variable X to have single distribution with large range
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Data along variable X to have single distribution with large range
 x &lt;- rnorm(1000) * 10 + 50
 
 # Data along Y to have two distributions with a smaller range
@@ -167,8 +166,7 @@ head(df)
 ## 4 45.10800  9.276210
 ## 5 27.84014  8.870390
 ## 6 33.45776 11.068927
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>In this bi-variate example, the data along the x-axis is drawn from a
 normal distribution and has a single modal value.</p>
@@ -179,13 +177,12 @@ creating a separation between clusters.</p>
 
 <p>The range of the X-variable is larger than the range of Y.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>ggExtra::ggMarginal(
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ggExtra::ggMarginal(
     ggplot(df, aes(x = x, y = y)) +
         geom_point() + theme_bw(),
 type = "histogram", fill = "lightgrey"
 )
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><img src="/img/post_images/cluster_normalisation/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /></p>
 
@@ -193,7 +190,7 @@ type = "histogram", fill = "lightgrey"
 
 <h2 id="k-means-on-un-scaled-data">K-means on un-scaled data</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code># Perform K-means Clustering
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Perform K-means Clustering
 km &lt;- kmeans(df, #features to be included in cluster model
              2, # number of clusters
              nstart = 20 # number of repeats
@@ -210,8 +207,7 @@ ggplot(df, aes(x = x, y = y)) +
     geom_point(data = centroids, aes(x = x, y = y, colour = Centroid), cex = 5, pch = 19) +
     guides(color = FALSE) + # remove legend
     theme_bw()
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><img src="/img/post_images/cluster_normalisation/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /></p>
 
@@ -220,14 +216,13 @@ R-plots default to maximising the screen space and will distort each
 axis for a better visualisation, and with the plot in this format it can
 be difficult to see why the clusters have formed around these centroids.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>ggplot(df, aes(x = x, y = y)) +
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ggplot(df, aes(x = x, y = y)) +
     geom_point(aes(color = as.factor(km$cluster)), pch = 19, alpha = 0.5) +
     geom_point(data = centroids, aes(x = x, y = y, colour = Centroid), cex = 5, pch = 19) +
     guides(color = FALSE) + # remove legend
     coord_fixed() + # maintain correct aspect ratio (assuming change in x is same as change in y)
     theme_bw()
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><img src="/img/post_images/cluster_normalisation/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /></p>
 
@@ -242,7 +237,7 @@ data points, similar to linear regression.</p>
 With the large difference in the scales of each feature, this is not the
 case:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>df %&gt;%
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>df %&gt;%
     summarise(range_x = max(x) - min(x),
               range_y = max(y) - min(y),
               var_x = var(x),
@@ -251,8 +246,7 @@ case:</p>
 
 ##   range_x range_y var_x var_y
 ## 1   60.03   10.75 94.46  6.96
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>The data in this case are on different scales and thus more weighting is
 given to the feature with the largest range.</p>
@@ -267,7 +261,7 @@ have used Unity based normalisation.</p>
 
 <p>Where: <em>x</em> = data vector and <em>x</em>′ = normalised x</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code># Create Feature Scaling function that takes a numeric vector.
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Create Feature Scaling function that takes a numeric vector.
 scaling &lt;- function(x){
     (x - min(x)) / (max(x) - min(x))
 }
@@ -293,8 +287,7 @@ ggplot(data = df_scaled,
        ) +
     geom_point() +
     theme_bw()
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><img src="/img/post_images/cluster_normalisation/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /></p>
 
@@ -313,7 +306,7 @@ different randomly set initilisation values and choosing the result with
 the lowest error rate. This is done using the <code class="highlighter-rouge">nstart = n</code> argument in
 <code class="highlighter-rouge">kmeans()</code> function.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code># run k-means on scaled data
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># run k-means on scaled data
 km_scaled &lt;- kmeans(df_scaled, 2, nstart = 20)
 
 # create an unscale function to return values back to original scale
@@ -330,8 +323,7 @@ ggplot(df, aes(x = x, y = y)) +
     geom_point(data = centroids, aes(x = x, y = y, colour = Centroid), cex = 5, pch = 19) +
     guides(color = FALSE) + # remove legend
     theme_bw()
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><img src="/img/post_images/cluster_normalisation/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /></p>
 
@@ -341,7 +333,7 @@ squared errors, resulting in a more intuitive clustering.</p>
 
 <h1 id="session-information">Session Information</h1>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sessionInfo()
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sessionInfo()
 
 ## R version 3.4.2 (2017-09-28)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
@@ -373,8 +365,7 @@ squared errors, resulting in a more intuitive clustering.</p>
 ## [25] glue_1.2.0       evaluate_0.10.1  rmarkdown_1.8    labeling_0.3    
 ## [29] stringi_1.1.6    compiler_3.4.2   scales_0.5.0     backports_1.1.1
 ## [33] httpuv_1.3.5     pkgconfig_2.0.1
-</code></pre>
-</div>
+</code></pre></div></div>
 
 
                     <div class="row">
@@ -441,7 +432,7 @@ squared errors, resulting in a more intuitive clustering.</p>
                       </a>
                   </li>
                 </ul>
-                <p class="copyright text-muted">Copyright &copy; Infobesity 2017</p>
+                <p class="copyright text-muted">Copyright &copy; Infobesity 2018</p>
             </div>
         </div>
     </div>
