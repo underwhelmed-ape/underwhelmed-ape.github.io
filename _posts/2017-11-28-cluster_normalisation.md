@@ -159,9 +159,7 @@ Normilisation eliminates the problem of different scales by bringing all
 values between 0 and 1. There are various ways to scale data, here I
 have used Unity based normalisation.
 
-$$
-x\\prime = \\frac{x - min(x)}{max(x) - min(x)}
-$$
+![Unity-based normilisation equation](https://latex.codecogs.com/gif.latex?x%5Cprime%20%3D%20%5Cfrac%7Bx%20-%20min%28x%29%7D%7Bmax%28x%29%20-%20min%28x%29%7D)
 
 Where: *x* = data vector and *x*′ = normalised x
 

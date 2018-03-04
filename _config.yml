@@ -16,9 +16,7 @@
 title: Infobesity
 email: your-email@domain.com
 description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  A Data Science portfolio documenting my learning path and various projects.
 baseurl: ""
 url: "https://underwhelmed-ape.github.io"
 github_username:  underwhelmed-ape
