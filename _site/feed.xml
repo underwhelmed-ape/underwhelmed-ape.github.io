@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-03-04T12:21:10+00:00</updated><id>http://localhost:4000/</id><title type="html">Infobesity</title><subtitle>A Data Science portfolio documenting my learning path and various projects.
->>>>>>> Stashed changes
-</subtitle><entry><title type="html">Feature Scaling for K-means</title><link href="http://localhost:4000/post/2017/11/28/cluster_normalisation.html" rel="alternate" type="text/html" title="Feature Scaling for K-means" /><published>2017-11-28T00:00:00+00:00</published><updated>2017-11-28T00:00:00+00:00</updated><id>http://localhost:4000/post/2017/11/28/cluster_normalisation</id><content type="html" xml:base="http://localhost:4000/post/2017/11/28/cluster_normalisation.html">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
-=======
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="https://underwhelmed-ape.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://underwhelmed-ape.github.io/" rel="alternate" type="text/html" /><updated>2018-03-10T23:27:46+00:00</updated><id>https://underwhelmed-ape.github.io/</id><title type="html">Infobesity</title><subtitle>A Data Science portfolio documenting my learning path and various projects.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="https://underwhelmed-ape.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://underwhelmed-ape.github.io/" rel="alternate" type="text/html" /><updated>2018-03-24T20:10:23+00:00</updated><id>https://underwhelmed-ape.github.io/</id><title type="html">Infobesity</title><subtitle>A Data Science portfolio documenting my learning path and various projects.
 </subtitle><entry><title type="html">Feature Scaling for K-means</title><link href="https://underwhelmed-ape.github.io/post/2017/11/28/cluster_normalisation.html" rel="alternate" type="text/html" title="Feature Scaling for K-means" /><published>2017-11-28T00:00:00+00:00</published><updated>2017-11-28T00:00:00+00:00</updated><id>https://underwhelmed-ape.github.io/post/2017/11/28/cluster_normalisation</id><content type="html" xml:base="https://underwhelmed-ape.github.io/post/2017/11/28/cluster_normalisation.html">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
->>>>>>> 03f89c065f5ac3d16ea6d6c7d068ed66d819c8cc
 
 &lt;p&gt;This is a demonstration of the importance of normalising (also known as
 standardising) data with distance based clustering techniques like
@@ -251,26 +245,26 @@ squared errors, resulting in a more intuitive clustering.&lt;/p&gt;
 ##
 ## locale:
 ## [1] LC_COLLATE=English_United Kingdom.1252
-## [2] LC_CTYPE=English_United Kingdom.1252
+## [2] LC_CTYPE=English_United Kingdom.1252   
 ## [3] LC_MONETARY=English_United Kingdom.1252
-## [4] LC_NUMERIC=C
-## [5] LC_TIME=English_United Kingdom.1252
+## [4] LC_NUMERIC=C                           
+## [5] LC_TIME=English_United Kingdom.1252    
 ##
 ## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ##
 ## other attached packages:
 ## [1] bindrcpp_0.2       ggExtra_0.7        ggplot2_2.2.1.9000
-## [4] dplyr_0.7.4
+## [4] dplyr_0.7.4       
 ##
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.14     knitr_1.17       bindr_0.1        magrittr_1.5
-##  [5] munsell_0.4.3    xtable_1.8-2     colorspace_1.3-2 R6_2.2.2
-##  [9] rlang_0.1.4      plyr_1.8.4       stringr_1.2.0    tools_3.4.2
+##  [1] Rcpp_0.12.14     knitr_1.17       bindr_0.1        magrittr_1.5    
+##  [5] munsell_0.4.3    xtable_1.8-2     colorspace_1.3-2 R6_2.2.2        
+##  [9] rlang_0.1.4      plyr_1.8.4       stringr_1.2.0    tools_3.4.2     
 ## [13] grid_3.4.2       gtable_0.2.0     miniUI_0.1.1     htmltools_0.3.6
-## [17] lazyeval_0.2.1   yaml_2.1.14      assertthat_0.2.0 rprojroot_1.2
-## [21] digest_0.6.12    tibble_1.3.4     shiny_1.0.5      mime_0.5
-## [25] glue_1.2.0       evaluate_0.10.1  rmarkdown_1.8    labeling_0.3
+## [17] lazyeval_0.2.1   yaml_2.1.14      assertthat_0.2.0 rprojroot_1.2   
+## [21] digest_0.6.12    tibble_1.3.4     shiny_1.0.5      mime_0.5        
+## [25] glue_1.2.0       evaluate_0.10.1  rmarkdown_1.8    labeling_0.3    
 ## [29] stringi_1.1.6    compiler_3.4.2   scales_0.5.0     backports_1.1.1
 ## [33] httpuv_1.3.5     pkgconfig_2.0.1
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="post" /><summary type="html">Introduction</summary></entry><entry><title type="html">Insect Survey Web Scraping</title><link href="https://underwhelmed-ape.github.io/post/2017/09/01/RIS.html" rel="alternate" type="text/html" title="Insect Survey Web Scraping" /><published>2017-09-01T00:00:00+01:00</published><updated>2017-09-01T00:00:00+01:00</updated><id>https://underwhelmed-ape.github.io/post/2017/09/01/RIS</id><content type="html" xml:base="https://underwhelmed-ape.github.io/post/2017/09/01/RIS.html">&lt;h2 id=&quot;introduction-to-rothamsteds-insect-survey&quot;&gt;Introduction to Rothamsted’s Insect Survey&lt;/h2&gt;
@@ -472,36 +466,36 @@ consistent:&lt;/p&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;str_extract(string = all_bulletins$date_range,
             pattern = &quot;\\d+ \\w+ &quot;)
 
-##   [1] &quot;21 August &quot;    &quot;14 August &quot;    &quot;07 August &quot;    &quot;31 July &quot;
-##   [5] &quot;24 July &quot;      &quot;17 July &quot;      &quot;10 July &quot;      &quot;02 July &quot;
-##   [9] &quot;26 June &quot;      &quot;19 June &quot;      &quot;12 June &quot;      &quot;05 June &quot;
-##  [13] &quot;29 May &quot;       &quot;22 May &quot;       &quot;15 May &quot;       &quot;08 May &quot;
-##  [17] &quot;01 May &quot;       &quot;24 April &quot;     &quot;17 April &quot;     &quot;10 April &quot;
+##   [1] &quot;21 August &quot;    &quot;14 August &quot;    &quot;07 August &quot;    &quot;31 July &quot;     
+##   [5] &quot;24 July &quot;      &quot;17 July &quot;      &quot;10 July &quot;      &quot;02 July &quot;     
+##   [9] &quot;26 June &quot;      &quot;19 June &quot;      &quot;12 June &quot;      &quot;05 June &quot;     
+##  [13] &quot;29 May &quot;       &quot;22 May &quot;       &quot;15 May &quot;       &quot;08 May &quot;      
+##  [17] &quot;01 May &quot;       &quot;24 April &quot;     &quot;17 April &quot;     &quot;10 April &quot;    
 ##  [21] &quot;03 April &quot;     &quot;27 March &quot;     &quot;07 November &quot;  &quot;06 November &quot;
-##  [25] &quot;24 October &quot;   &quot;17 October &quot;   &quot;10 October &quot;   &quot;03 October &quot;
+##  [25] &quot;24 October &quot;   &quot;17 October &quot;   &quot;10 October &quot;   &quot;03 October &quot;  
 ##  [29] &quot;26 September &quot; &quot;19 September &quot; &quot;12 September &quot; &quot;05 September &quot;
-##  [33] &quot;29 August &quot;    &quot;22 August &quot;    &quot;15 August &quot;    &quot;08 August &quot;
-##  [37] &quot;01 August &quot;    &quot;25 July &quot;      &quot;18 July &quot;      &quot;11 July &quot;
-##  [41] &quot;04 July &quot;      &quot;27 June &quot;      &quot;20 June &quot;      &quot;13 June &quot;
-##  [45] &quot;06 June &quot;      &quot;30 May &quot;       &quot;23 May &quot;       &quot;16 May &quot;
-##  [49] &quot;09 May &quot;       &quot;02 May &quot;       &quot;25 April &quot;     &quot;18 April &quot;
-##  [53] &quot;11 April &quot;     &quot;04 April &quot;     &quot;28 March &quot;     &quot;21 March &quot;
-##  [57] &quot;16 November &quot;  &quot;09 November &quot;  &quot;02 November &quot;  &quot;26 October &quot;
+##  [33] &quot;29 August &quot;    &quot;22 August &quot;    &quot;15 August &quot;    &quot;08 August &quot;   
+##  [37] &quot;01 August &quot;    &quot;25 July &quot;      &quot;18 July &quot;      &quot;11 July &quot;     
+##  [41] &quot;04 July &quot;      &quot;27 June &quot;      &quot;20 June &quot;      &quot;13 June &quot;     
+##  [45] &quot;06 June &quot;      &quot;30 May &quot;       &quot;23 May &quot;       &quot;16 May &quot;      
+##  [49] &quot;09 May &quot;       &quot;02 May &quot;       &quot;25 April &quot;     &quot;18 April &quot;    
+##  [53] &quot;11 April &quot;     &quot;04 April &quot;     &quot;28 March &quot;     &quot;21 March &quot;    
+##  [57] &quot;16 November &quot;  &quot;09 November &quot;  &quot;02 November &quot;  &quot;26 October &quot;  
 ##  [61] &quot;19 October &quot;   &quot;12 October &quot;   &quot;05 October &quot;   &quot;28 September &quot;
-##  [65] &quot;21 September &quot; &quot;14 September &quot; &quot;07 September &quot; &quot;31 August &quot;
-##  [69] &quot;24 August &quot;    &quot;17 August &quot;    &quot;10 August &quot;    &quot;03 August &quot;
-##  [73] &quot;27 July &quot;      &quot;20 July &quot;      &quot;13 July &quot;      &quot;06 July &quot;
-##  [77] &quot;29 June &quot;      &quot;22 June &quot;      &quot;15 June &quot;      &quot;08 June &quot;
-##  [81] &quot;01 June &quot;      &quot;25 May &quot;       &quot;18 May &quot;       &quot;11 May &quot;
-##  [85] &quot;04 May &quot;       &quot;27 April &quot;     &quot;20 April &quot;     &quot;13 April &quot;
+##  [65] &quot;21 September &quot; &quot;14 September &quot; &quot;07 September &quot; &quot;31 August &quot;   
+##  [69] &quot;24 August &quot;    &quot;17 August &quot;    &quot;10 August &quot;    &quot;03 August &quot;   
+##  [73] &quot;27 July &quot;      &quot;20 July &quot;      &quot;13 July &quot;      &quot;06 July &quot;     
+##  [77] &quot;29 June &quot;      &quot;22 June &quot;      &quot;15 June &quot;      &quot;08 June &quot;     
+##  [81] &quot;01 June &quot;      &quot;25 May &quot;       &quot;18 May &quot;       &quot;11 May &quot;      
+##  [85] &quot;04 May &quot;       &quot;27 April &quot;     &quot;20 April &quot;     &quot;13 April &quot;    
 ##  [89] &quot;06 April &quot;     &quot;17 November &quot;  &quot;10 November &quot;  &quot;03 November &quot;
-##  [93] &quot;27 October &quot;   &quot;20 October &quot;   &quot;13 October &quot;   &quot;06 October &quot;
+##  [93] &quot;27 October &quot;   &quot;20 October &quot;   &quot;13 October &quot;   &quot;06 October &quot;  
 ##  [97] &quot;29 September &quot; &quot;22 September &quot; &quot;15 September &quot; &quot;08 September &quot;
-## [101] &quot;01 September &quot; &quot;25 August &quot;    &quot;18 August &quot;    &quot;11 August &quot;
-## [105] &quot;04 August &quot;    &quot;28 July &quot;      &quot;21 July &quot;      &quot;14 July &quot;
-## [109] &quot;07 July &quot;      &quot;30 June &quot;      &quot;23 June &quot;      &quot;16 June &quot;
-## [113] &quot;09 June &quot;      &quot;02 June &quot;      &quot;26 May &quot;       &quot;19 May &quot;
-## [117] &quot;12 May &quot;       &quot;05 May &quot;       &quot;28 April &quot;     NA
+## [101] &quot;01 September &quot; &quot;25 August &quot;    &quot;18 August &quot;    &quot;11 August &quot;   
+## [105] &quot;04 August &quot;    &quot;28 July &quot;      &quot;21 July &quot;      &quot;14 July &quot;     
+## [109] &quot;07 July &quot;      &quot;30 June &quot;      &quot;23 June &quot;      &quot;16 June &quot;     
+## [113] &quot;09 June &quot;      &quot;02 June &quot;      &quot;26 May &quot;       &quot;19 May &quot;      
+## [117] &quot;12 May &quot;       &quot;05 May &quot;       &quot;28 April &quot;     NA             
 ## [121] NA              &quot;31 March &quot;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -522,46 +516,46 @@ all_bulletins$year,
 sep = &quot; &quot;
 )
 
-##   [1] &quot;21 August 2017&quot;    &quot;14 August 2017&quot;    &quot;07 August 2017&quot;
-##   [4] &quot;31 July 2017&quot;      &quot;24 July 2017&quot;      &quot;17 July 2017&quot;
-##   [7] &quot;10 July 2017&quot;      &quot;02 July 2017&quot;      &quot;26 June 2017&quot;
-##  [10] &quot;19 June 2017&quot;      &quot;12 June 2017&quot;      &quot;05 June 2017&quot;
-##  [13] &quot;29 May 2017&quot;       &quot;22 May 2017&quot;       &quot;15 May 2017&quot;
-##  [16] &quot;08 May 2017&quot;       &quot;01 May 2017&quot;       &quot;24 April 2017&quot;
-##  [19] &quot;17 April 2017&quot;     &quot;10 April 2017&quot;     &quot;03 April 2017&quot;
-##  [22] &quot;27 March 2017&quot;     &quot;07 November 2016&quot;  &quot;31 October 2016&quot;
-##  [25] &quot;24 October 2016&quot;   &quot;17 October 2016&quot;   &quot;10 October 2016&quot;
+##   [1] &quot;21 August 2017&quot;    &quot;14 August 2017&quot;    &quot;07 August 2017&quot;   
+##   [4] &quot;31 July 2017&quot;      &quot;24 July 2017&quot;      &quot;17 July 2017&quot;     
+##   [7] &quot;10 July 2017&quot;      &quot;02 July 2017&quot;      &quot;26 June 2017&quot;     
+##  [10] &quot;19 June 2017&quot;      &quot;12 June 2017&quot;      &quot;05 June 2017&quot;     
+##  [13] &quot;29 May 2017&quot;       &quot;22 May 2017&quot;       &quot;15 May 2017&quot;      
+##  [16] &quot;08 May 2017&quot;       &quot;01 May 2017&quot;       &quot;24 April 2017&quot;    
+##  [19] &quot;17 April 2017&quot;     &quot;10 April 2017&quot;     &quot;03 April 2017&quot;    
+##  [22] &quot;27 March 2017&quot;     &quot;07 November 2016&quot;  &quot;31 October 2016&quot;  
+##  [25] &quot;24 October 2016&quot;   &quot;17 October 2016&quot;   &quot;10 October 2016&quot;  
 ##  [28] &quot;03 October 2016&quot;   &quot;26 September 2016&quot; &quot;19 September 2016&quot;
-##  [31] &quot;12 September 2016&quot; &quot;05 September 2016&quot; &quot;29 August 2016&quot;
-##  [34] &quot;22 August 2016&quot;    &quot;15 August 2016&quot;    &quot;08 August 2016&quot;
-##  [37] &quot;01 August 2016&quot;    &quot;25 July 2016&quot;      &quot;18 July 2016&quot;
-##  [40] &quot;11 July 2016&quot;      &quot;04 July 2016&quot;      &quot;27 June 2016&quot;
-##  [43] &quot;20 June 2016&quot;      &quot;13 June 2016&quot;      &quot;06 June 2016&quot;
-##  [46] &quot;30 May 2016&quot;       &quot;23 May 2016&quot;       &quot;16 May 2016&quot;
-##  [49] &quot;09 May 2016&quot;       &quot;02 May 2016&quot;       &quot;25 April 2016&quot;
-##  [52] &quot;18 April 2016&quot;     &quot;11 April 2016&quot;     &quot;04 April 2016&quot;
+##  [31] &quot;12 September 2016&quot; &quot;05 September 2016&quot; &quot;29 August 2016&quot;   
+##  [34] &quot;22 August 2016&quot;    &quot;15 August 2016&quot;    &quot;08 August 2016&quot;   
+##  [37] &quot;01 August 2016&quot;    &quot;25 July 2016&quot;      &quot;18 July 2016&quot;     
+##  [40] &quot;11 July 2016&quot;      &quot;04 July 2016&quot;      &quot;27 June 2016&quot;     
+##  [43] &quot;20 June 2016&quot;      &quot;13 June 2016&quot;      &quot;06 June 2016&quot;     
+##  [46] &quot;30 May 2016&quot;       &quot;23 May 2016&quot;       &quot;16 May 2016&quot;      
+##  [49] &quot;09 May 2016&quot;       &quot;02 May 2016&quot;       &quot;25 April 2016&quot;    
+##  [52] &quot;18 April 2016&quot;     &quot;11 April 2016&quot;     &quot;04 April 2016&quot;    
 ##  [55] &quot;28 March 2016&quot;     &quot;21 March 2016&quot;     &quot;16 November 2015&quot;
-##  [58] &quot;09 November 2015&quot;  &quot;02 November 2015&quot;  &quot;26 October 2015&quot;
-##  [61] &quot;19 October 2015&quot;   &quot;12 October 2015&quot;   &quot;05 October 2015&quot;
+##  [58] &quot;09 November 2015&quot;  &quot;02 November 2015&quot;  &quot;26 October 2015&quot;  
+##  [61] &quot;19 October 2015&quot;   &quot;12 October 2015&quot;   &quot;05 October 2015&quot;  
 ##  [64] &quot;28 September 2015&quot; &quot;21 September 2015&quot; &quot;14 September 2015&quot;
-##  [67] &quot;07 September 2015&quot; &quot;31 August 2015&quot;    &quot;24 August 2015&quot;
-##  [70] &quot;17 August 2015&quot;    &quot;10 August 2015&quot;    &quot;03 August 2015&quot;
-##  [73] &quot;27 July 2015&quot;      &quot;20 July 2015&quot;      &quot;13 July 2015&quot;
-##  [76] &quot;06 July 2015&quot;      &quot;29 June 2015&quot;      &quot;22 June 2015&quot;
-##  [79] &quot;15 June 2015&quot;      &quot;08 June 2015&quot;      &quot;01 June 2015&quot;
-##  [82] &quot;25 May 2015&quot;       &quot;18 May 2015&quot;       &quot;11 May 2015&quot;
-##  [85] &quot;04 May 2015&quot;       &quot;27 April 2015&quot;     &quot;20 April 2015&quot;
+##  [67] &quot;07 September 2015&quot; &quot;31 August 2015&quot;    &quot;24 August 2015&quot;   
+##  [70] &quot;17 August 2015&quot;    &quot;10 August 2015&quot;    &quot;03 August 2015&quot;   
+##  [73] &quot;27 July 2015&quot;      &quot;20 July 2015&quot;      &quot;13 July 2015&quot;     
+##  [76] &quot;06 July 2015&quot;      &quot;29 June 2015&quot;      &quot;22 June 2015&quot;     
+##  [79] &quot;15 June 2015&quot;      &quot;08 June 2015&quot;      &quot;01 June 2015&quot;     
+##  [82] &quot;25 May 2015&quot;       &quot;18 May 2015&quot;       &quot;11 May 2015&quot;      
+##  [85] &quot;04 May 2015&quot;       &quot;27 April 2015&quot;     &quot;20 April 2015&quot;    
 ##  [88] &quot;13 April 2015&quot;     &quot;06 April 2015&quot;     &quot;17 November 2014&quot;
-##  [91] &quot;10 November 2014&quot;  &quot;03 November 2014&quot;  &quot;27 October 2014&quot;
-##  [94] &quot;20 October 2014&quot;   &quot;13 October 2014&quot;   &quot;06 October 2014&quot;
+##  [91] &quot;10 November 2014&quot;  &quot;03 November 2014&quot;  &quot;27 October 2014&quot;  
+##  [94] &quot;20 October 2014&quot;   &quot;13 October 2014&quot;   &quot;06 October 2014&quot;  
 ##  [97] &quot;29 September 2014&quot; &quot;22 September 2014&quot; &quot;15 September 2014&quot;
-## [100] &quot;08 September 2014&quot; &quot;01 September 2014&quot; &quot;25 August 2014&quot;
-## [103] &quot;18 August 2014&quot;    &quot;11 August 2014&quot;    &quot;04 August 2014&quot;
-## [106] &quot;28 July 2014&quot;      &quot;21 July 2014&quot;      &quot;14 July 2014&quot;
-## [109] &quot;07 July 2014&quot;      &quot;30 June 2014&quot;      &quot;23 June 2014&quot;
-## [112] &quot;16 June 2014&quot;      &quot;09 June 2014&quot;      &quot;02 June 2014&quot;
-## [115] &quot;26 May 2014&quot;       &quot;19 May 2014&quot;       &quot;12 May 2014&quot;
-## [118] &quot;05 May 2014&quot;       &quot;28 April 2014&quot;     &quot;07 April 2014&quot;
+## [100] &quot;08 September 2014&quot; &quot;01 September 2014&quot; &quot;25 August 2014&quot;   
+## [103] &quot;18 August 2014&quot;    &quot;11 August 2014&quot;    &quot;04 August 2014&quot;   
+## [106] &quot;28 July 2014&quot;      &quot;21 July 2014&quot;      &quot;14 July 2014&quot;     
+## [109] &quot;07 July 2014&quot;      &quot;30 June 2014&quot;      &quot;23 June 2014&quot;     
+## [112] &quot;16 June 2014&quot;      &quot;09 June 2014&quot;      &quot;02 June 2014&quot;     
+## [115] &quot;26 May 2014&quot;       &quot;19 May 2014&quot;       &quot;12 May 2014&quot;      
+## [118] &quot;05 May 2014&quot;       &quot;28 April 2014&quot;     &quot;07 April 2014&quot;    
 ## [121] &quot;14 April 2014&quot;     &quot;31 March 2014&quot;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -668,53 +662,53 @@ and number of days of catching. Removing these.&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;summary(all.data)
 
-##    Aphid_sp               El                 D                 G
-##  Length:2541        Min.   :   0.000   Min.   :  0.000   Min.   :   0.00
-##  Class :character   1st Qu.:   0.000   1st Qu.:  0.000   1st Qu.:   0.00
-##  Mode  :character   Median :   0.000   Median :  0.000   Median :   0.00
-##                     Mean   :   6.504   Mean   :  7.537   Mean   :  20.74
-##                     3rd Qu.:   0.000   3rd Qu.:  1.000   3rd Qu.:   2.00
-##                     Max.   :1048.000   Max.   :996.000   Max.   :6156.00
-##
-##        Ay                N                 Y                P
-##  Min.   :  0.000   Min.   :   0.00   Min.   :  0.00   Min.   :    0.00
-##  1st Qu.:  0.000   1st Qu.:   0.00   1st Qu.:  0.00   1st Qu.:    0.00
-##  Median :  0.000   Median :   0.00   Median :  0.00   Median :    0.00
-##  Mean   :  3.731   Mean   :  10.88   Mean   : 11.75   Mean   :   74.06
-##  3rd Qu.:  0.000   3rd Qu.:   1.00   3rd Qu.:  4.00   3rd Qu.:    3.00
-##  Max.   :667.000   Max.   :1895.00   Max.   :857.00   Max.   :18287.00
-##                                      NA's   :693
-##        K                 BB                We                H
-##  Min.   :   0.00   Min.   :   0.00   Min.   :   0.00   Min.   :   0.00
-##  1st Qu.:   0.00   1st Qu.:   0.00   1st Qu.:   0.00   1st Qu.:   0.00
-##  Median :   0.00   Median :   0.00   Median :   0.00   Median :   0.00
-##  Mean   :  13.18   Mean   :  14.23   Mean   :  12.29   Mean   :  12.58
-##  3rd Qu.:   4.00   3rd Qu.:   3.00   3rd Qu.:   3.00   3rd Qu.:   3.00
-##  Max.   :1847.00   Max.   :1942.00   Max.   :1368.00   Max.   :3053.00
-##
-##        RT                 Wr                SP                W
-##  Min.   :   0.000   Min.   :   0.00   Min.   :  0.000   Min.   :  0.000
-##  1st Qu.:   0.000   1st Qu.:   0.00   1st Qu.:  0.000   1st Qu.:  0.000
-##  Median :   0.000   Median :   0.00   Median :  0.000   Median :  0.000
-##  Mean   :   9.289   Mean   :  12.45   Mean   :  3.553   Mean   :  6.149
-##  3rd Qu.:   3.000   3rd Qu.:   3.00   3rd Qu.:  1.000   3rd Qu.:  2.000
-##  Max.   :1627.000   Max.   :1381.00   Max.   :639.000   Max.   :510.000
-##
-##        SX             Year           Bulletin_Number
-##  Min.   :  0.00   Length:2541        Length:2541
-##  1st Qu.:  0.00   Class :character   Class :character
-##  Median :  0.00   Mode  :character   Mode  :character
-##  Mean   :  7.58
-##  3rd Qu.:  3.00
-##  Max.   :664.00
-##
-##    week_start             Index              AB
-##  Min.   :2014-03-31   Min.   :  1.00   Min.   :0
-##  1st Qu.:2014-11-03   1st Qu.: 32.00   1st Qu.:0
-##  Median :2015-10-12   Median : 62.00   Median :0
-##  Mean   :2015-11-24   Mean   : 61.82   Mean   :0
-##  3rd Qu.:2016-09-05   3rd Qu.: 92.00   3rd Qu.:0
-##  Max.   :2017-08-21   Max.   :122.00   Max.   :0
+##    Aphid_sp               El                 D                 G          
+##  Length:2541        Min.   :   0.000   Min.   :  0.000   Min.   :   0.00  
+##  Class :character   1st Qu.:   0.000   1st Qu.:  0.000   1st Qu.:   0.00  
+##  Mode  :character   Median :   0.000   Median :  0.000   Median :   0.00  
+##                     Mean   :   6.504   Mean   :  7.537   Mean   :  20.74  
+##                     3rd Qu.:   0.000   3rd Qu.:  1.000   3rd Qu.:   2.00  
+##                     Max.   :1048.000   Max.   :996.000   Max.   :6156.00  
+##                                                                           
+##        Ay                N                 Y                P           
+##  Min.   :  0.000   Min.   :   0.00   Min.   :  0.00   Min.   :    0.00  
+##  1st Qu.:  0.000   1st Qu.:   0.00   1st Qu.:  0.00   1st Qu.:    0.00  
+##  Median :  0.000   Median :   0.00   Median :  0.00   Median :    0.00  
+##  Mean   :  3.731   Mean   :  10.88   Mean   : 11.75   Mean   :   74.06  
+##  3rd Qu.:  0.000   3rd Qu.:   1.00   3rd Qu.:  4.00   3rd Qu.:    3.00  
+##  Max.   :667.000   Max.   :1895.00   Max.   :857.00   Max.   :18287.00  
+##                                      NA's   :693                        
+##        K                 BB                We                H          
+##  Min.   :   0.00   Min.   :   0.00   Min.   :   0.00   Min.   :   0.00  
+##  1st Qu.:   0.00   1st Qu.:   0.00   1st Qu.:   0.00   1st Qu.:   0.00  
+##  Median :   0.00   Median :   0.00   Median :   0.00   Median :   0.00  
+##  Mean   :  13.18   Mean   :  14.23   Mean   :  12.29   Mean   :  12.58  
+##  3rd Qu.:   4.00   3rd Qu.:   3.00   3rd Qu.:   3.00   3rd Qu.:   3.00  
+##  Max.   :1847.00   Max.   :1942.00   Max.   :1368.00   Max.   :3053.00  
+##                                                                         
+##        RT                 Wr                SP                W          
+##  Min.   :   0.000   Min.   :   0.00   Min.   :  0.000   Min.   :  0.000  
+##  1st Qu.:   0.000   1st Qu.:   0.00   1st Qu.:  0.000   1st Qu.:  0.000  
+##  Median :   0.000   Median :   0.00   Median :  0.000   Median :  0.000  
+##  Mean   :   9.289   Mean   :  12.45   Mean   :  3.553   Mean   :  6.149  
+##  3rd Qu.:   3.000   3rd Qu.:   3.00   3rd Qu.:  1.000   3rd Qu.:  2.000  
+##  Max.   :1627.000   Max.   :1381.00   Max.   :639.000   Max.   :510.000  
+##                                                                          
+##        SX             Year           Bulletin_Number   
+##  Min.   :  0.00   Length:2541        Length:2541       
+##  1st Qu.:  0.00   Class :character   Class :character  
+##  Median :  0.00   Mode  :character   Mode  :character  
+##  Mean   :  7.58                                        
+##  3rd Qu.:  3.00                                        
+##  Max.   :664.00                                        
+##                                                        
+##    week_start             Index              AB      
+##  Min.   :2014-03-31   Min.   :  1.00   Min.   :0     
+##  1st Qu.:2014-11-03   1st Qu.: 32.00   1st Qu.:0     
+##  Median :2015-10-12   Median : 62.00   Median :0     
+##  Mean   :2015-11-24   Mean   : 61.82   Mean   :0     
+##  3rd Qu.:2016-09-05   3rd Qu.: 92.00   3rd Qu.:0     
+##  Max.   :2017-08-21   Max.   :122.00   Max.   :0     
 ##                                        NA's   :2247
 
 Amelia::missmap(all.data,
@@ -757,20 +751,20 @@ analysis.&lt;/p&gt;
 ## [1] en_GB.UTF-8/en_GB.UTF-8/en_GB.UTF-8/C/en_GB.UTF-8/en_GB.UTF-8
 ##
 ## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ##
 ## other attached packages:
-##  [1] Amelia_1.7.4      Rcpp_0.12.12      ggplot2_2.2.1
-##  [4] httr_1.2.1        rvest_0.3.2       xml2_1.1.1
-##  [7] reshape2_1.4.2    data.table_1.10.0 lubridate_1.6.0
-## [10] stringr_1.2.0     dplyr_0.5.0
+##  [1] Amelia_1.7.4      Rcpp_0.12.12      ggplot2_2.2.1    
+##  [4] httr_1.2.1        rvest_0.3.2       xml2_1.1.1       
+##  [7] reshape2_1.4.2    data.table_1.10.0 lubridate_1.6.0  
+## [10] stringr_1.2.0     dplyr_0.5.0      
 ##
 ## loaded via a namespace (and not attached):
 ##  [1] knitr_1.16       magrittr_1.5     munsell_0.4.3    colorspace_1.3-2
-##  [5] R6_2.2.0         plyr_1.8.4       tools_3.3.3      grid_3.3.3
+##  [5] R6_2.2.0         plyr_1.8.4       tools_3.3.3      grid_3.3.3      
 ##  [9] gtable_0.2.0     DBI_0.5-1        selectr_0.3-1    htmltools_0.3.6
-## [13] lazyeval_0.2.0   yaml_2.1.14      assertthat_0.1   rprojroot_1.2
+## [13] lazyeval_0.2.0   yaml_2.1.14      assertthat_0.1   rprojroot_1.2   
 ## [17] digest_0.6.12    tibble_1.2       curl_2.3         evaluate_0.10.1
-## [21] rmarkdown_1.6    labeling_0.3     stringi_1.1.5    scales_0.4.1
+## [21] rmarkdown_1.6    labeling_0.3     stringi_1.1.5    scales_0.4.1    
 ## [25] backports_1.0.5  XML_3.98-1.5     foreign_0.8-67
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="post" /><summary type="html">Introduction to Rothamsted’s Insect Survey</summary></entry></feed>
