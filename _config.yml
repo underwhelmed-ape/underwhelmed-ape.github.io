@@ -27,11 +27,12 @@ linkedin_username: in/james-ulyett-049a1238
 markdown: kramdown
 plugins_dir:
   - jekyll-paginate
+  - paginate:3
   - jekyll-feed
 exclude:
   - Gemfile
   - Gemfile.lock
-paginate: 2
+paginate_path: "page:num"
 collections:
   making:
     output: true
