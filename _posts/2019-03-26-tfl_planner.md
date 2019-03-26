@@ -5,7 +5,7 @@ description: "Get up to date journeys from Bethnal Green underground station"
 Author: James
 date: 2019-03-26
 category: post
-cover_image: "post_images/tfl_planner/tube_map.jpg"
+cover_image: "post_images/tfl_planner/tube_image.jpeg"
 ---
 
 London Underground Planner
